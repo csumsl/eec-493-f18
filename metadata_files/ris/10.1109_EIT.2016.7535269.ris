@@ -1,0 +1,51 @@
+TY  - CONF
+TI  - On automatic assessment of rehabilitation exercises with realtime feedback
+T2  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+SP  - 0376
+EP  - 0381
+AU  - W. Zhao
+PY  - 2016
+KW  - biomechanics
+KW  - fuzzy reasoning
+KW  - health care
+KW  - patient rehabilitation
+KW  - pose estimation
+KW  - real-time systems
+KW  - fuzzy inference
+KW  - categorical feedback
+KW  - categorical information
+KW  - numerical scores
+KW  - kinematic rules
+KW  - patient convenience
+KW  - speedy recovery
+KW  - healthcare cost reduction
+KW  - human motion tracking system
+KW  - automatic realtime assessment
+KW  - realtime feedback
+KW  - automatic rehabilitation exercise assessment
+KW  - Kinematics
+KW  - Fuzzy logic
+KW  - Indexes
+KW  - Aggregates
+KW  - Engines
+KW  - Standards
+KW  - Fuzzy systems
+KW  - Kinematic Rules
+KW  - Similarity
+KW  - Fuzzy Inference
+KW  - Rehabilitation Exercises
+KW  - Feedback
+KW  - Human Motion Assessment
+KW  - Microsoft Kinect
+DO  - 10.1109/EIT.2016.7535269
+JO  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+IS  - 
+SN  - 2154-0373
+VO  - 
+VL  - 
+JA  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+Y1  - 19-21 May 2016
+AB  - Automatic realtime assessment of rehabilitation exercises is desirable for any human motion tracking system because it would enable patients to receive immediate and meaningful feedbacks on the rehabilitation exercises they perform at home without the supervision of medical professionals. Such systems could help engage patients in carrying out prescribed rehabilitation exercises for a speedy recovery, while reducing the cost of healthcare, and increasing the convenience of patients. In this paper, we propose an assessment method that aims to provide accurate and meaningful feedbacks to patients in realtime. The method is based on kinematic rules for each rehabilitation exercise, which is essential to provide specific feedbacks regarding the quality of an exercise. The feedbacks take the form of both numerical scores and categorical information for each repetition of the exercise. Numerical scores are determined by computing the similarity between the observed movements with respect to key configurations described in the kinematic rules. Categorical feedback is obtained using fuzzy inference based on numerical scores of individual configurations.
+ER  - 
+
+

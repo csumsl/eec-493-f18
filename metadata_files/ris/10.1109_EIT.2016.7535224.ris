@@ -1,0 +1,55 @@
+TY  - CONF
+TI  - Simultaneous Priority and Detection based Carrier Sense Multiple Access protocol
+T2  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+SP  - 0111
+EP  - 0116
+AU  - A. Razaque
+AU  - S. Jain
+AU  - M. N. K. S. S. Irrinki
+AU  - F. H. Amsaad
+AU  - M. Abdulgader
+AU  - Niraj
+PY  - 2016
+KW  - antennas
+KW  - carrier sense multiple access
+KW  - quality of service
+KW  - radiocommunication
+KW  - telecommunication congestion control
+KW  - simultaneous priority-detection based CSMA protocol
+KW  - carrier sense multiple access protocol
+KW  - collision detection
+KW  - wired communication
+KW  - wireless communication
+KW  - packet collision
+KW  - robust mechanism
+KW  - SPD-CSMA protocol
+KW  - code message
+KW  - antenna
+KW  - shortest first algorithm
+KW  - SF algorithm
+KW  - NS3
+KW  - Ubuntu 13.10 operating system
+KW  - quality of service
+KW  - Transmitters
+KW  - Receivers
+KW  - Correlation
+KW  - Multiaccess communication
+KW  - Collision avoidance
+KW  - Wireless communication
+KW  - Protocols
+KW  - RTS
+KW  - CTS
+KW  - Carrier Sense Multiple Access (CSMA)
+KW  - SPD-CSMA
+DO  - 10.1109/EIT.2016.7535224
+JO  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+IS  - 
+SN  - 2154-0373
+VO  - 
+VL  - 
+JA  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+Y1  - 19-21 May 2016
+AB  - Carrier Sense Multiple Access (CSMA) protocol, along with collision detection in wired communication, helps in further increasing the efficiency of channel usage. It helps in terminating its transmission over the channel immediately once collision is detected, releasing the channel for other useful transmissions. Whereas in wireless communication, the packet collision cannot be detected until the completion of the entire transmission. To detect the collision immediately, the robust mechanism is requested. In this paper, we introduce Simultaneous Priority and Detection based Carrier Sense Multiple Access (SPD-CSMA) protocol to establish an efficient connection and immediate collision detection. The SPD-CSMA handles the situation using an additional antenna and a unique code message. SPD-CSMA is also supported with Shortest First (SF) algorithm for prioritizing the transmission. The proposed SPD-CSMA approach is validated by using NS3 on Ubuntu 13.10 operating system. The experimental results demonstrate that a reduced collision rate helps with improving the Quality of Service.
+ER  - 
+
+

@@ -1,0 +1,54 @@
+TY  - CONF
+TI  - Power reduction for Smart Homes in an Internet of Things framework
+T2  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+SP  - 0117
+EP  - 0121
+AU  - A. Razaque
+AU  - P. Oddo
+AU  - F. H. Amsaad
+AU  - M. Sangavikar
+AU  - S. Manchikatla
+AU  - Niraj
+PY  - 2016
+KW  - actuators
+KW  - domestic appliances
+KW  - home automation
+KW  - Internet of Things
+KW  - microcontrollers
+KW  - power consumption
+KW  - resource allocation
+KW  - sensors
+KW  - smart meters
+KW  - AVR Studio software
+KW  - AMTV algorithm
+KW  - automatic measuring threshold value algorithm
+KW  - electronic household device
+KW  - actuator
+KW  - sensor-based microcontroller
+KW  - power consumption reduction
+KW  - power consumption monitoring
+KW  - SM implementation
+KW  - smart meter
+KW  - resource utilization
+KW  - device management
+KW  - Internet of Things framework
+KW  - smart homes
+KW  - Internet of things
+KW  - Power demand
+KW  - Smart homes
+KW  - Smart meters
+KW  - Microcontrollers
+KW  - Power measurement
+KW  - Sensors
+DO  - 10.1109/EIT.2016.7535225
+JO  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+IS  - 
+SN  - 2154-0373
+VO  - 
+VL  - 
+JA  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+Y1  - 19-21 May 2016
+AB  - Internet of Things implementations continue to be a challenge in many different industries. Power consumption remains an important issue for device management in Smart Homes as unwanted additional power may be used at unwanted times. As a result, resources used in generation of power are not put to use efficiently. These resources can be utilized in other productive applications. In this paper, we design and implement a Smart Meter (SM) to reduce and monitor the power consumption of household devices. The Smart Meter uses a sensor-based microcontroller and an actuator that work together to analyze the power consumption of each electronic household device. The Smart Meter is implemented by an Automatic Measuring Threshold Value (AMTV) algorithm to set threshold values for each appliance. The performance of the AMTV algorithm is validated using AVR Studio software. The results demonstrate that the Smart Meter significantly reduces power consumption.
+ER  - 
+
+

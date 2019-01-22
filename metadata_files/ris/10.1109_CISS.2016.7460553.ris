@@ -1,0 +1,48 @@
+TY  - CONF
+TI  - Kalman filtering based on the maximum correntropy criterion in the presence of non-Gaussian noise
+T2  - 2016 Annual Conference on Information Science and Systems (CISS)
+SP  - 500
+EP  - 505
+AU  - R. Izanloo
+AU  - S. A. Fakoorian
+AU  - H. S. Yazdi
+AU  - D. Simon
+PY  - 2016
+KW  - Kalman filters
+KW  - least squares approximations
+KW  - nonlinear filters
+KW  - state estimation
+KW  - maximum correntropy criterion
+KW  - nonGaussian noise
+KW  - higher-order signal statistics
+KW  - state estimation
+KW  - C-Filter
+KW  - modified correntropy filter
+KW  - weighted least squares
+KW  - MCC-KF
+KW  - MC-Filter
+KW  - unscented Kalman filter
+KW  - ensemble Kalman filter
+KW  - Gaussian sum filter
+KW  - Kalman filters
+KW  - Adaptive filters
+KW  - Noise measurement
+KW  - Kernel
+KW  - State estimation
+KW  - Random variables
+KW  - state estimation
+KW  - maximum correntropy criterion (MCC)
+KW  - Kalman filter
+KW  - non-Gaussian noise
+DO  - 10.1109/CISS.2016.7460553
+JO  - 2016 Annual Conference on Information Science and Systems (CISS)
+IS  - 
+SN  - 
+VO  - 
+VL  - 
+JA  - 2016 Annual Conference on Information Science and Systems (CISS)
+Y1  - 16-18 March 2016
+AB  - State estimation in the presence of non-Gaussian noise is discussed. Since the Kalman filter uses only second-order signal information, it is not optimal in non-Gaussian noise environments. The maximum correntropy criterion (MCC) is a new approach to measure the similarity of two random variables using information from higher-order signal statistics. The correntropy filter (C-Filter) uses the MCC for state estimation. In this paper we first improve the performance of the C-Filter by modifying its derivation to obtain the modified correntropy filter (MC-Filter). Next we use the MCC and weighted least squares (WLS) to propose an MCC filter in Kalman filter form, which we call the MCC-KF. Simulation results show the superiority of the MCC-KF compared with the C-Filter, the MC-Filter, the unscented Kalman filter, the ensemble Kalman filter, and the Gaussian sum filter, in the presence of two different types of non-Gaussian disturbances (shot noise and Gaussian mixture noise).
+ER  - 
+
+

@@ -1,0 +1,51 @@
+TY  - CONF
+TI  - Efficient allocation of slot using Medium Access Control protocol
+T2  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+SP  - 0105
+EP  - 0110
+AU  - Niraj
+AU  - A. Trivedi
+AU  - A. Razaque
+AU  - F. H. Amsaad
+AU  - M. Abdulgader
+PY  - 2016
+KW  - access protocols
+KW  - energy conservation
+KW  - energy consumption
+KW  - radio transceivers
+KW  - telecommunication power management
+KW  - telecommunication scheduling
+KW  - wireless sensor networks
+KW  - medium access control protocol
+KW  - wireless sensor network
+KW  - transceiver energy consumption
+KW  - energy efficient packet scheduling algorithm
+KW  - EEPS algorithm
+KW  - dynamic slot allocation
+KW  - DSA
+KW  - throughput performance improvement
+KW  - NS3 network simulator
+KW  - Resource management
+KW  - Heuristic algorithms
+KW  - Cognitive radio
+KW  - Media Access Protocol
+KW  - Dynamic scheduling
+KW  - Energy efficiency
+KW  - WSN
+KW  - MAC Protocol
+KW  - DASN
+KW  - EEPS
+KW  - Energy Efficiency
+KW  - Dynamic Slot Allocation
+DO  - 10.1109/EIT.2016.7535223
+JO  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+IS  - 
+SN  - 2154-0373
+VO  - 
+VL  - 
+JA  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+Y1  - 19-21 May 2016
+AB  - With the emergence of advanced technology, the need for improving the energy has been of paramount significance, especially in the area of wireless sensor network. The most of the energy consumed in the sensor node caused by transceiver. The efficient Medium Access Control protocol can reduce an additional energy consumption of transceiver. In this paper, we introduce an energy efficient packet scheduling (EEPS) algorithm using dynamic slot allocation (DSA). In the EEPS, head node checks empty available slots and assigns the slots those nodes that are in waiting list. Based on this algorithm, empty available slots are utilized efficiently for saving the energy consumption and improving the throughput performance. The proposed idea is implemented using network simulator (NS3) and compared with other known existing protocols.
+ER  - 
+
+

@@ -1,0 +1,51 @@
+TY  - CONF
+TI  - Decentralized load frequency control for an interconnected power system with nonlinearities
+T2  - 2016 American Control Conference (ACC)
+SP  - 5915
+EP  - 5920
+AU  - L. Dong
+PY  - 2016
+KW  - decentralised control
+KW  - frequency control
+KW  - load regulation
+KW  - power system interconnection
+KW  - robust control
+KW  - variable structure systems
+KW  - decentralized load frequency control
+KW  - sliding mode based LFC
+KW  - nonreheat turbines
+KW  - governor dead band
+KW  - GDB
+KW  - generation rate constraint
+KW  - GRC
+KW  - block diagram
+KW  - frequency error
+KW  - tie-line power error
+KW  - power load changes
+KW  - nonlinear interconnected power system
+KW  - control system
+KW  - system uncertainties
+KW  - Power system stability
+KW  - Turbines
+KW  - Frequency control
+KW  - Nonlinear systems
+KW  - Switches
+KW  - Load frequency control
+KW  - sliding mode controller
+KW  - governor dead band
+KW  - generation rate constraint
+KW  - robustness
+KW  - frequency error
+KW  - tie-line power error
+DO  - 10.1109/ACC.2016.7526597
+JO  - 2016 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2016 American Control Conference (ACC)
+Y1  - 6-8 July 2016
+AB  - A decentralized load frequency controller (LFC) is developed on a two-area interconnected power system with non-reheat turbines only. The nonlinearities such as governor dead band (GDB) and generation rate constraint (GRC) are included in the block diagram of the power system. A sliding mode based LFC is applied to each area of the power system. Our control goal is to regulate frequency error and tie-line power error despite the presences of power load changes and parameter variations. The sliding-mode based LFC is simulated on the nonlinear interconnected power system. The simulation results demonstrate the robustness of the control system against external disturbance and system uncertainties. They also verify the effectiveness of the LFC by driving the frequency error and tie-line power error to zero.
+ER  - 
+
+

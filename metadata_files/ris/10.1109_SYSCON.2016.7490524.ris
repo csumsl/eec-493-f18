@@ -1,0 +1,35 @@
+TY  - CONF
+TI  - Multi-objective optimization of decision trees for power system voltage security assessment
+T2  - 2016 Annual IEEE Systems Conference (SysCon)
+SP  - 1
+EP  - 6
+AU  - H. Mohammadi
+AU  - G. Khademi
+AU  - D. Simon
+AU  - M. Dehghani
+PY  - 2016
+KW  - Sociology
+KW  - Optimization
+KW  - Principal component analysis
+KW  - Indexes
+KW  - Security
+KW  - Phasor measurement units
+KW  - Biogeography-Based Optimization
+KW  - Decision Tree
+KW  - Multi-Objective Optimization
+KW  - Invasive Weed Optimization
+KW  - PMU
+KW  - Principal Component Analysis
+KW  - Voltage Security assessment
+DO  - 10.1109/SYSCON.2016.7490524
+JO  - 2016 Annual IEEE Systems Conference (SysCon)
+IS  - 
+SN  - 
+VO  - 
+VL  - 
+JA  - 2016 Annual IEEE Systems Conference (SysCon)
+Y1  - 18-21 April 2016
+AB  - A method is proposed for online power system voltage security assessment (VSA) using decision trees (DTs). The DT inputs are the data gathered from phasor measurement units (PMUs). The dimensions of the training data are reduced in two ways. First, the number of features is decreased by principal component analysis (PCA). Second, the number of training cases is decreased by correlation analysis. Biogeography-based optimization (BBO) and invasive weed optimization (IWO) are combined with four multi-objective (MO) optimization methods to find the optimum dimensions of the PMU data while minimizing the misclassification rate of the security test. The four MO methods include vector evaluation (VE), nondominated sorting (NS), niched Pareto (NP), and strength Pareto (SP). A systematic comparison of MOIWO and MOBBO is conducted using Pareto front hypervolume and relative coverage. The method is applied to a 66-bus power grid in Iran. The results show that the training data size is reduced by about 98%, and the training time is approximately 200 times faster because of the dimension reduction. The misclassification rates of the DTs are in the range of 4–9%. Hypervolume and relative coverage indicate that VEBBO performs better than the other methods.
+ER  - 
+
+

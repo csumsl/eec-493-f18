@@ -1,0 +1,54 @@
+TY  - CONF
+TI  - Multi-biometric system using Fuzzy Vault
+T2  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+SP  - 0122
+EP  - 0126
+AU  - A. Razaque
+AU  - P. S. Sreeramoju
+AU  - F. H. Amsaad
+AU  - C. K. Nerella
+AU  - M. Abdulgader
+AU  - H. Saranu
+PY  - 2016
+KW  - biometrics (access control)
+KW  - cryptography
+KW  - data privacy
+KW  - sensor fusion
+KW  - multibiometric system
+KW  - fuzzy vault
+KW  - single authentication process
+KW  - user privacy
+KW  - system security
+KW  - fusion method
+KW  - Feature extraction
+KW  - Authentication
+KW  - Cryptography
+KW  - Iris recognition
+KW  - Servers
+KW  - Decoding
+KW  - Encoding
+KW  - fuzzy vault
+KW  - bio-metric
+KW  - cryptosystem
+KW  - authentication
+KW  - iris
+KW  - fingerprint
+KW  - multifactor
+KW  - identification
+KW  - recognition
+KW  - security
+KW  - multimodal
+KW  - chaff points
+KW  - network
+DO  - 10.1109/EIT.2016.7535226
+JO  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+IS  - 
+SN  - 2154-0373
+VO  - 
+VL  - 
+JA  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+Y1  - 19-21 May 2016
+AB  - Advancement of electronic media not only improved our living standard, but created several amenities that makes work bit easier. On the other hand, media faces several challenges. Biometric systems are promising technology with accurate data and secure features. However, many existing Biometric systems based on a single authentication process have higher vulnerability than a Multi-biometric systems. Multi-biometric systems accumulate evidence from more than one biometric trait in order to recognize a person. They provide higher recognition accuracy and larger population coverage. Multi-biometric systems store multiple biometric templates for each user, which results in increased risk to user privacy and system security. To secure the individual biometric template by using the fusion method to store the data. The fuzzy vault is proposed. By the end of this paper we would like to propose an idea to further improve the data security and also make this process take the less time.
+ER  - 
+
+

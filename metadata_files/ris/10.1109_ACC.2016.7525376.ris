@@ -1,0 +1,62 @@
+TY  - CONF
+TI  - Robust composite adaptive transfemoral prosthesis control with non-scalar boundary layer trajectories
+T2  - 2016 American Control Conference (ACC)
+SP  - 3002
+EP  - 3007
+AU  - V. Azimi
+AU  - D. Simon
+AU  - H. Richter
+AU  - S. A. Fakoorian
+PY  - 2016
+KW  - adaptive control
+KW  - biomechanics
+KW  - control system synthesis
+KW  - medical robotics
+KW  - prosthetics
+KW  - robust control
+KW  - uncertain systems
+KW  - robust composite adaptive transfemoral prosthesis control
+KW  - nonscalar boundary layer trajectories
+KW  - robust composite adaptive impedance controller
+KW  - bounded-gain forgetting
+KW  - BGF
+KW  - three degree-of-freedom active prosthetic leg
+KW  - 3-DOF active prosthetic leg
+KW  - transfemoral amputees
+KW  - robust adaptive controller design
+KW  - ground reaction forces
+KW  - GRFs
+KW  - parameter uncertainties
+KW  - control signal chattering
+KW  - tracking performance
+KW  - tracking-error-based adaptation law
+KW  - prediction-error-based adaptation law
+KW  - TEB adaptation law
+KW  - PEB adaptation law
+KW  - parameter adaptation
+KW  - tracking error
+KW  - prediction error
+KW  - uncertain parameter estimation
+KW  - closed-loop system stability
+KW  - prosthesis robot model
+KW  - nonscalar boundary layer trajectory
+KW  - prosthesis controller design
+KW  - biomechanical properties
+KW  - Robustness
+KW  - Legged locomotion
+KW  - Prosthetics
+KW  - Trajectory
+KW  - Adaptation models
+KW  - Impedance
+DO  - 10.1109/ACC.2016.7525376
+JO  - 2016 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2016 American Control Conference (ACC)
+Y1  - 6-8 July 2016
+AB  - We propose a robust composite adaptive impedance controller with bounded-gain forgetting (BGF) for a three degree-of-freedom (3-DOF) active prosthetic leg for transfemoral amputees. We design a robust adaptive controller so the error trajectories converge to a boundary layer and the controller shows robustness to ground reaction forces (GRFs) and parameter uncertainties. The boundary layer not only compromises between control signal chattering and tracking performance, but also stops tracking-error-based (TEB) adaptation in the boundary layer to prevent unfavorable parameter drift. We then design a tracking-error-based / prediction-error-based (TEB/PEB) adaptation law, which drives parameter adaptation using both tracking error and prediction error on the joint torques to estimate the uncertain parameters of the system. We prove the stability of the closed-loop system for the prosthesis robot model using a non-scalar boundary layer trajectory. We design the prosthesis controller to imitate the biomechanical properties of able-bodied walking and to provide smooth gait. We finally present simulation results to confirm the effectiveness of the controller for both nominal and perturbed values of the system parameters. When the unknown system parameters deviate by 30% from their nominal values, we achieve more accurate parameter estimation and 6% improvement in tracking performance compared with the robust TEB adaptive controller.
+ER  - 
+
+

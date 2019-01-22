@@ -1,0 +1,32 @@
+TY  - CONF
+TI  - Ground reaction force estimation in prosthetic legs with an extended Kalman filter
+T2  - 2016 Annual IEEE Systems Conference (SysCon)
+SP  - 1
+EP  - 6
+AU  - S. A. Fakoorian
+AU  - D. Simon
+AU  - H. Richter
+AU  - V. Azimi
+PY  - 2016
+KW  - Prosthetics
+KW  - Legged locomotion
+KW  - Knee
+KW  - Robot kinematics
+KW  - Estimation
+KW  - Hip
+KW  - ground reaction force (GRF)
+KW  - state estimation
+KW  - prosthetic leg
+KW  - extended Kalman filter (EKF)
+DO  - 10.1109/SYSCON.2016.7490563
+JO  - 2016 Annual IEEE Systems Conference (SysCon)
+IS  - 
+SN  - 
+VO  - 
+VL  - 
+JA  - 2016 Annual IEEE Systems Conference (SysCon)
+Y1  - 18-21 April 2016
+AB  - A method to estimate ground reaction forces (GRFs) in a robot/prosthesis system is presented. The system includes a robot that emulates human hip and thigh motion, along with a powered (active) prosthetic leg for transfemoral amputees, and includes four degrees of freedom (DOF): vertical hip displacement, thigh angle, knee angle, and ankle angle. We design a continuous-time extended Kalman filter (EKF) to estimate not only the states of the robot/prosthesis system, but also the GRFs that act on the prosthetic foot. The simulation results show that the average RMS estimation errors of the thigh, knee, and ankle angles are 0.007, 0.015, and 0.465 rad with the use of four, two, and one measurements respectively. The average GRF estimation errors are 2.914, 7.595, and 20.359 N with the use of four, two, and one measurements respectively. It is shown via simulation that the state estimates remain bounded if the initial estimation errors and the disturbances are sufficiently small.
+ER  - 
+
+

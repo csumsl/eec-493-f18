@@ -1,0 +1,39 @@
+TY  - CONF
+TI  - Switched robust tracking/impedance control for an active transfemoral prosthesis
+T2  - 2016 American Control Conference (ACC)
+SP  - 2187
+EP  - 2192
+AU  - H. Warner
+AU  - D. Simon
+AU  - H. Mohammadi
+AU  - H. Richter
+PY  - 2016
+KW  - evolutionary computation
+KW  - prosthetics
+KW  - robust control
+KW  - switched robust tracking-impedance control
+KW  - active transfemoral prosthesis
+KW  - published controllers
+KW  - gait features
+KW  - energy regeneration
+KW  - evolutionary optimization algorithm
+KW  - ankle joints
+KW  - knee joints
+KW  - Impedance
+KW  - Robustness
+KW  - Switches
+KW  - Prosthetics
+KW  - Knee
+KW  - Hip
+DO  - 10.1109/ACC.2016.7525242
+JO  - 2016 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2016 American Control Conference (ACC)
+Y1  - 6-8 July 2016
+AB  - A novel control method for an active transfemoral prosthesis is developed based on the combination of two previously published controllers, robust tracking/impedance control and switched impedance control. This controller is simulated and optimized to provide desired gait features and energy regeneration. Specifically, an evolutionary optimization algorithm termed biogeography-based optimization is used. Across all optimization trials a tracking error on the order of 10-2 rad rms or less results for both the knee and ankle joints. This is accompanied by ground reaction forces approximating able-bodied gait data and an energy regeneration capacity of about 9.6 J per stride.
+ER  - 
+
+

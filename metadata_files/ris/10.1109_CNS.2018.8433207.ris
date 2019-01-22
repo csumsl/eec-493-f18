@@ -1,0 +1,41 @@
+TY  - CONF
+TI  - DOPA: Detecting Open Ports in Android OS
+T2  - 2018 IEEE Conference on Communications and Network Security (CNS)
+SP  - 1
+EP  - 2
+AU  - A. Alshehri
+AU  - H. Alshahrani
+AU  - A. Alzahrani
+AU  - R. Alharthi
+AU  - H. Fu
+AU  - A. Liu
+AU  - Y. Zhu
+PY  - 2018
+KW  - Android (operating system)
+KW  - mobile computing
+KW  - smart phones
+KW  - malicious applications
+KW  - Android device
+KW  - DOPA
+KW  - Android OS
+KW  - smartphones
+KW  - detecting open ports in Android operating system
+KW  - Smart phones
+KW  - Androids
+KW  - Humanoid robots
+KW  - Security
+KW  - Tools
+KW  - IP networks
+KW  - Conferences
+DO  - 10.1109/CNS.2018.8433207
+JO  - 2018 IEEE Conference on Communications and Network Security (CNS)
+IS  - 
+SN  - 
+VO  - 
+VL  - 
+JA  - 2018 IEEE Conference on Communications and Network Security (CNS)
+Y1  - 30 May-1 June 2018
+AB  - In smartphones, open ports can be exploited by malicious applications to allow attackers to remotely control user's device. In this work, we perform an attack that opens a port on an Android device to remotely connect to this port and access various phone features without requesting any permission from the user. Additionally, we develop and implement a tool called, Detecting Open Ports in Android operating system (DOPA), that detects open ports and reports them to the user.
+ER  - 
+
+

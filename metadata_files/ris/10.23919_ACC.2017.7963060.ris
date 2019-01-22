@@ -1,0 +1,67 @@
+TY  - CONF
+TI  - System identification and control optimization of an active prosthetic knee in swing phase
+T2  - 2017 American Control Conference (ACC)
+SP  - 857
+EP  - 862
+AU  - M. Abdelhady
+AU  - A. Rashvand
+AU  - M. Moness
+AU  - H. Richter
+AU  - D. Simon
+PY  - 2017
+KW  - DC motors
+KW  - evolutionary computation
+KW  - Kalman filters
+KW  - particle swarm optimisation
+KW  - prosthetics
+KW  - quadratic programming
+KW  - three-term control
+KW  - velocity control
+KW  - system identification
+KW  - control optimization
+KW  - active prosthetic knee
+KW  - swing phase
+KW  - DC motor
+KW  - Mauch SNS prosthetic knee
+KW  - evolutionary optimization
+KW  - derivative-based optimization
+KW  - system parameters
+KW  - proportional-integral-derivative controller
+KW  - PID
+KW  - knee ankle tracking
+KW  - Kalman filter
+KW  - knee angle velocity
+KW  - measured knee angle
+KW  - integral square error
+KW  - ISE
+KW  - identification problem
+KW  - particle swarm optimization
+KW  - PSO
+KW  - sequential quadratic programming
+KW  - SQP
+KW  - biogeography-based optimization
+KW  - BBO
+KW  - PID controller optimization
+KW  - shank length
+KW  - optimal proportional gain
+KW  - optimal derivative
+KW  - integral gains
+KW  - DC motors
+KW  - Optimization
+KW  - Knee
+KW  - Prosthetics
+KW  - System identification
+KW  - Kalman filters
+KW  - Angular velocity
+DO  - 10.23919/ACC.2017.7963060
+JO  - 2017 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2017 American Control Conference (ACC)
+Y1  - 24-26 May 2017
+AB  - A DC motor is mounted to a Mauch SNS prosthetic knee to obtain an active prosthetic knee. Evolutionary optimization and derivative-based optimization are used to identify system parameters, and to tune a proportional-integral-derivative (PID) controller for knee ankle tracking during swing phase. A Kalman filter is used to estimate knee angle velocity on the basis of the measured knee angle for feedback to the controller. The performance of the optimization algorithms are evaluated based on integral square error (ISE) between experiment and simulation for the system identification problem, and tracking ISE for the control problem. Results show that for system identification, particle swarm optimization (PSO) gives better results than sequential quadratic programming (SQP) and biogeography-based optimization (BBO). Then PID controller optimization is performed while considering nine different shank lengths. BBO achieves the best average overall ISE, and PSO shows the fastest convergence. Finally, we see that increasing shank length results in an increase in the optimal proportional gain of the controller and a decrease in the optimal derivative and integral gains.
+ER  - 
+
+

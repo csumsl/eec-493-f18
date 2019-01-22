@@ -1,0 +1,47 @@
+TY  - CONF
+TI  - Neural network control of an optimized regenerative motor drive for a lower-limb prosthesis
+T2  - 2017 American Control Conference (ACC)
+SP  - 5330
+EP  - 5335
+AU  - T. Barto
+AU  - D. Simon
+PY  - 2017
+KW  - control system synthesis
+KW  - evolutionary computation
+KW  - motor drives
+KW  - neurocontrollers
+KW  - prosthetics
+KW  - supercapacitors
+KW  - optimized regenerative motor drive
+KW  - lower-limb prosthesis
+KW  - voltage source converter
+KW  - active prosthetic leg design
+KW  - supercapacitor bank
+KW  - artificial neural network controls
+KW  - VSC switching
+KW  - passivity-based controller
+KW  - PBC
+KW  - prosthesis motor parameters
+KW  - evolutionary algorithm
+KW  - knee angle tracking
+KW  - reference trajectories
+KW  - able-bodied walking
+KW  - Prosthetics
+KW  - Pulse width modulation
+KW  - Torque
+KW  - Knee
+KW  - Capacitors
+KW  - DC motors
+KW  - Switches
+DO  - 10.23919/ACC.2017.7963783
+JO  - 2017 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2017 American Control Conference (ACC)
+Y1  - 24-26 May 2017
+AB  - A voltage source converter (VSC) is incorporated in an active prosthetic leg design. The VSC supplies power to the prosthesis motor and regenerates energy from the prosthesis motor for storage in a supercapacitor bank. An artificial neural network controls the VSC switching so that the prosthesis motor generates a knee torque that matches the torque that is output from a passivity-based controller (PBC). The neural network, PBC, and prosthesis motor parameters are optimized with an evolutionary algorithm to achieve knee angle tracking. Several reference trajectories from able-bodied walking were tracked with an RMS tracking error of less than 0.5° while regenerating up to 67 Joules of energy during four gait cycles.
+ER  - 
+
+

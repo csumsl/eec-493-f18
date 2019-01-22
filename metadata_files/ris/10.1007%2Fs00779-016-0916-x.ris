@@ -1,0 +1,20 @@
+TY  - JOUR
+AU  - Luo, Xiong
+AU  - Lv, Yixuan
+AU  - Zhou, Mi
+AU  - Wang, Weiping
+AU  - Zhao, Wenbing
+PY  - 2016
+DA  - 2016/06/01
+TI  - A laguerre neural network-based ADP learning scheme with its application to tracking control in the Internet of Things
+JO  - Personal and Ubiquitous Computing
+SP  - 361
+EP  - 372
+VL  - 20
+IS  - 3
+AB  - Sensory data have becoming widely available in large volume and variety due to the increasing presence and adoption of the Internet of Things. Such data can be tremendously useful if they are processed properly in a timely fashion. They could play a key role in the coordination of industrial production. It is thus desirable to explore an effective and efficient scheme to support data tracking and monitoring. This paper intends to propose a novel automatic learning scheme to improve the tracking efficiency while maintaining or improving the data tracking accuracy. A core strategy in the proposed scheme is the design of Laguerre neural network (LaNN)-based approximate dynamic programming (ADP). As a traditional optimal learning strategy, ADP is a popular approach for data processing. The action neural network (NN) and the critic NN as two important components in ADP have big impact on the performance of ADP. In this paper, a LaNN is employed as the implementation of the action NN in ADP considering Laguerre polynomials’ approximation capability. In addition, this LaNN-based ADP is integrated into an online parameter-tuning framework to optimize those parameters of characteristic model that is used to trace the data in the tracking control system. Meanwhile, this article provides an associated Lyapunov convergence analysis to guarantee a uniformly ultimately boundedness property for tracking errors in the proposed approach. Furthermore, the proposed LaNN-based ADP optimal online parameter-tuning scheme is validated using a temperature dynamic tracking control task. The simulation results demonstrate that the scheme has satisfactory learning performance over time.
+SN  - 1617-4917
+UR  - https://doi.org/10.1007/s00779-016-0916-x
+DO  - 10.1007/s00779-016-0916-x
+ID  - Luo2016
+ER  - 

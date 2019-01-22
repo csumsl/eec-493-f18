@@ -1,0 +1,54 @@
+TY  - CONF
+TI  - Byzantine fault tolerance for collaborative editing with commutative operations
+T2  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+SP  - 0246
+EP  - 0251
+AU  - W. Zhao
+AU  - M. Babi
+AU  - William Yang
+AU  - Xiong Luo
+AU  - Yueqin Zhu
+AU  - Jack Yang
+AU  - Chaomin Luo
+AU  - M. Yang
+PY  - 2016
+KW  - concurrency control
+KW  - fault tolerant computing
+KW  - groupware
+KW  - security of data
+KW  - text editing
+KW  - Byzantine fault tolerance
+KW  - commutative operations
+KW  - collaborative editing systems
+KW  - conflict-free replicated data types
+KW  - CRDT
+KW  - concurrent update operations
+KW  - conflict resolution
+KW  - shared document
+KW  - linear text buffer
+KW  - state convergence
+KW  - malicious users
+KW  - threats
+KW  - runtime overhead
+KW  - Collaboration
+KW  - Fault tolerant systems
+KW  - Fault tolerance
+KW  - Convergence
+KW  - Algorithm design and analysis
+KW  - Mechanical factors
+KW  - Byzantine Fault Tolerance
+KW  - Optimistic Replication
+KW  - Conflict-free Replicated Data Types
+KW  - Distributed Consensus
+DO  - 10.1109/EIT.2016.7535248
+JO  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+IS  - 
+SN  - 2154-0373
+VO  - 
+VL  - 
+JA  - 2016 IEEE International Conference on Electro Information Technology (EIT)
+Y1  - 19-21 May 2016
+AB  - In this paper, we present a study on how to achieve Byzantine fault tolerance for collaborative editing systems with commutative operations. Recent research suggests that Conflict-free Replicated Data Types (CRDTs) can be used to construct collaborative editing systems where concurrent update operations are commutative. This new approach is shown to avoid the complex issue of conflict resolution for concurrent updates to a shared document. The shared document is often modeled as a linear text buffer where each basic element is assigned a globally unique and totally ordered identifier. The linear text buffer constructed this way would constitute as a CRDT, which would make concurrent update operations issued by different users commutative. State convergence at all users can be achieved automatically as long as the users could receive the same set of operations irrespective of their relative ordering. However, it is not straightforward to guarantee state convergence in the presence of malicious users and external adversaries. In this paper, we carefully analyze the threats towards this type of systems, and propose a lightweight solution to achieve Byzantine fault tolerance with low runtime overhead. We define a set of correctness properties for such systems and prove that the proposed Byzantine fault tolerance mechanisms guarantee these properties.
+ER  - 
+
+

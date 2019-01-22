@@ -1,0 +1,47 @@
+TY  - CONF
+TI  - Throughput maximization for full-duplex energy harvesting MIMO communications
+T2  - 2016 IEEE 17th International Workshop on Signal Processing Advances in Wireless Communications (SPAWC)
+SP  - 1
+EP  - 5
+AU  - B. K. Chalise
+AU  - H. A. Suraweera
+AU  - G. Zheng
+PY  - 2016
+KW  - energy harvesting
+KW  - MIMO communication
+KW  - search problems
+KW  - throughput maximization
+KW  - full-duplex energy harvesting MIMO communications
+KW  - base station
+KW  - BS-beamformer
+KW  - wirelessly powered mobile station
+KW  - MS
+KW  - time-splitting parameter
+KW  - TSP
+KW  - computationally efficient optimum technique
+KW  - semidefinite relaxation
+KW  - line-search
+KW  - zero-forcing beamformer constraint
+KW  - ZF
+KW  - closed-form solution
+KW  - suboptimum method
+KW  - transmit antennas
+KW  - Optimization
+KW  - Bidirectional control
+KW  - Wireless communication
+KW  - MIMO
+KW  - Simulation
+KW  - Transmitting antennas
+KW  - Uplink
+DO  - 10.1109/SPAWC.2016.7536806
+JO  - 2016 IEEE 17th International Workshop on Signal Processing Advances in Wireless Communications (SPAWC)
+IS  - 
+SN  - 
+VO  - 
+VL  - 
+JA  - 2016 IEEE 17th International Workshop on Signal Processing Advances in Wireless Communications (SPAWC)
+Y1  - 3-6 July 2016
+AB  - This paper proposes methods for optimizing bidirectional information rates between a base station (BS) and a wirelessly powered mobile station (MS). In the first phase, the MS harvests energy using signals transmitted by the BS, whereas in the second phase both the BS and MS communicate to each other in a full-duplex mode. The BS-beamformer and the time-splitting parameter (TSP) of energy harvesting scheme are jointly optimized to obtain the BS-MS rate region. The joint optimization is non-convex, however a computationally efficient optimum technique based upon semidefinite relaxation and line-search is proposed to solve the problem. Moreover, a suboptimum approach based upon the zero-forcing (ZF) beamformer constraint is also proposed. In this case, a closed-form solution of TSP is obtained. Simulation results demonstrate the advantage of the optimum method over the suboptimum method, especially for smaller values of BS transmit power and number of transmit antennas at the BS.
+ER  - 
+
+

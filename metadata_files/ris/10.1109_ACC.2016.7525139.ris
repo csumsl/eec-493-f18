@@ -1,0 +1,44 @@
+TY  - CONF
+TI  - An active disturbance rejection control solution for the two-mass-spring benchmark problem
+T2  - 2016 American Control Conference (ACC)
+SP  - 1566
+EP  - 1571
+AU  - Han Zhang
+AU  - Shen Zhao
+AU  - Zhiqiang Gao
+PY  - 2016
+KW  - active disturbance rejection control
+KW  - control system synthesis
+KW  - observers
+KW  - vibration isolation
+KW  - active disturbance rejection control
+KW  - two-mass-spring benchmark problem
+KW  - control design
+KW  - uncertain dynamic systems
+KW  - ADRC framework
+KW  - mathematical model
+KW  - model-based solutions
+KW  - control algorithm
+KW  - ADRC solution
+KW  - observer bandwidth
+KW  - noise sensitivity
+KW  - model parameters variations
+KW  - Mathematical model
+KW  - Friction
+KW  - Observers
+KW  - Bandwidth
+KW  - Benchmark testing
+KW  - System dynamics
+KW  - Uncertainty
+DO  - 10.1109/ACC.2016.7525139
+JO  - 2016 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2016 American Control Conference (ACC)
+Y1  - 6-8 July 2016
+AB  - The feasibility of a systematic and effective control design for highly uncertain dynamic systems is tested on the well-known two-mass-spring benchmark problem, based on the active disturbance rejection control (ADRC) framework. The proposed solution is obtained in the absence of a detailed mathematical model, in contrast to all previous model-based solutions. In addition to meeting the design criteria, the simplicity and ease of tuning make the resulting control algorithm appealing to practicing engineers. Furthermore, it is shown in this paper that even though ADRC doesn't require detailed mathematical model of the plant, it can take advantage of it if one is given. By incorporating the model information into the ADRC solution, the observer bandwidth and noise sensitivity can be reduced without performance degradation, thus making the solution more practically appealing. The proposed design is also shown to be insensitive to various uncertainties, such as model parameters variations, in both simulation and hardware experiment.
+ER  - 
+
+

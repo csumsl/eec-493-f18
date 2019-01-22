@@ -1,0 +1,55 @@
+TY  - CONF
+TI  - Derivative-free Kalman filtering-based control of prosthetic legs
+T2  - 2017 American Control Conference (ACC)
+SP  - 5205
+EP  - 5210
+AU  - S. M. Moosavi
+AU  - S. A. Fakoorian
+AU  - V. Azimi
+AU  - H. Richter
+AU  - D. Simon
+PY  - 2017
+KW  - artificial limbs
+KW  - Kalman filters
+KW  - medical robotics
+KW  - PD control
+KW  - PI control
+KW  - robot dynamics
+KW  - robust control
+KW  - state estimation
+KW  - derivative-free Kalman filtering-based control
+KW  - state estimation-based control
+KW  - thigh motion
+KW  - human hip motion
+KW  - powered transfemoral prosthetic leg
+KW  - robot-prosthesis combination
+KW  - three-degree-of-freedom robot
+KW  - vertical hip displacement
+KW  - thigh angle
+KW  - knee angle
+KW  - n-DOF robotic system
+KW  - robot dynamics
+KW  - PD
+KW  - PI
+KW  - disturbance compensators
+KW  - supervisory control
+KW  - robust DKF
+KW  - three-DOF robot-prosthesis system
+KW  - Kalman filters
+KW  - Legged locomotion
+KW  - Robustness
+KW  - Nonlinear systems
+KW  - Prosthetics
+KW  - Standards
+DO  - 10.23919/ACC.2017.7963763
+JO  - 2017 American Control Conference (ACC)
+IS  - 
+SN  - 2378-5861
+VO  - 
+VL  - 
+JA  - 2017 American Control Conference (ACC)
+Y1  - 24-26 May 2017
+AB  - A derivative-free method for state estimation-based control of a robot/prosthesis system is presented. The system is the combination of a test robot that emulates human hip and thigh motion, and a powered transfemoral prosthetic leg. The robot/prosthesis combination is modeled as a three degree-of-freedom (DOF) robot: vertical hip displacement, thigh angle, and knee angle. We develop a derivative-free Kalman filter (DKF) for state estimation-based control for an n-DOF robotic system. We then propose a method to make the DKF robust when the robot dynamics include disturbances. In the robust DKF, we use two different methods for disturbance rejection: PD and PI. These disturbance compensators are used for supervisory control to make the DKF robust in the presence of disturbances. The simulation results show the advantages of the DKF and the robust DKF for the three-DOF robot/prosthesis system for state estimation-based control.
+ER  - 
+
+
