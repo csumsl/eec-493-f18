@@ -9,5 +9,4 @@ Goals for this step in the project:
 	- The parser should realistically only go through the metadata file once and gather all the information
 	- We must compensate for all the types of metadata that the library staff wants, even if it's not included in a certain filetype
 
-2. Parse the information on the file and make sure that each metadata piece can be extracted 
-   when we eventually move them to the excel sheet in the future
+2. Parse the information on the file and put the metadata in the hashmap
