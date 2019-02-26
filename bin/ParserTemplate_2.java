@@ -49,7 +49,6 @@ public class ParserTemplate_2 {
         The value is the data we're parsing
     */
         HashMap<String, String> metadataTable = new HashMap<>();
-        path = "F:\\School\\Senior Project\\Semester 2\\Parsers\\ParserTemplate\\src\\test1.ris";
         BufferedReader br = new BufferedReader(new FileReader(path));
         
         // Used to read the current line in the file
