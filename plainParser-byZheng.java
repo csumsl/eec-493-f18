@@ -80,47 +80,47 @@ public class plainParser {
         	if (line.trim().equals(""))
                 continue;            
         	if (i == 1) {
-        		title = line;
+        		title = line.trim();
         		i++;
         	}
         	else if (i == 2) {
-        		pub = line;
+        		pub = line.trim();
         		i++;
         	}
           	else if (i == 3) {
-        		vol = line;
+        		vol = line.replace("Volume ","").trim();
         		i++;
         	}
         	else if (i == 4) {
-        		date = line;
+        		date = line.trim();
         		i++;
         	}
           	else if (i == 5) {
-        		pages = line;
+        		pages = line.replace("Pages ", "").trim();
         		i++;
         	}
           	else if (i == 6) {
-        		issNo = line;
+        		issNo = line.trim();
         		i++;
         	}
           	else if (i == 7) {
-        		doi = line;
+        		doi = line.trim();
         		i++;
         	}
           	else if (i == 8) {
-        		url = line;
+        		url = line.trim();
         		i++;
         	}
           	else if (i == 9) {
-        		ab = line;
+        		ab = line.replace("Abstract:", "").trim();;
         		i++;
         	}
           	else if (i == 10) {
-        		keywords = line;
+        		keywords = line.replace("Keywords:","").trim();
         		i++;
         	}
           	else {
-        		authors = line;
+        		authors = line.trim();
         		i++;
             }
         }
