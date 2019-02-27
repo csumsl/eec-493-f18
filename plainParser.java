@@ -41,19 +41,23 @@ public class plainParser {
         BufferedReader br = new BufferedReader(new FileReader(path));
         
         // Used to read the current line in the file
-        String line = "NULL";
-        String authors = "NULL";
-        String title = "NULL";
-        String pub = "NULL";
-        String vol = "NULL";
-        String date = "NULL";
-        String pages = "NULL";
-        String issNo = "NULL";
-        String doi = "NULL";
-        String url = "NULL";
-        String ab = "NULL";
-        String keywords = "NULL";
-        int i = 0;       		
+        String line = null;
+        String authors[] = null;
+        String author_fname = null;
+        String author_mname = null;
+       String author_lname = null;
+        String title = null;
+        String pub = null;
+        String vol = null;
+        String date = null;
+        String pages = null;
+        String issNo = null;
+        String doi = null;
+        String url = null;
+        String ab = null;
+        String keywords = null;
+        int i = 0;
+        		
         
         
         //Sanchita Mal-Sarkar, Iftikhar U. Sikder, Vijay K. Konangi,
@@ -119,10 +123,15 @@ public class plainParser {
         		keywords = line.replace("Keywords:","").trim();
         		i++;
         	}
+        
           	else {
-        		authors = line.trim();
+        		authors = line.split("[,]");
+        		for (int x = 0; x < authors.length; x++) {
+        			metadataTable.put("Author " + i, authors[i]);
+        		}
         		i++;
-            }
+        	
+        }
         }
         
     
