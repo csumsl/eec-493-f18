@@ -69,7 +69,7 @@ public class plainParser {
         //ISSN 0950-7051,
         //https://doi.org/10.1016/j.knosys.2016.06.032.
         //(http://www.sciencedirect.com/science/article/pii/S0950705116302039)
-        //Abstract: Discovering novel and interesting spatio-temporal patterns in sensor data is a major challenge in many scientific domains. Such data are often continuous, unbounded, and associated with high speed, time-variant distribution with local and spatial trends. This paper presents a formalism that includes an extension of classical rough set inference mechanism to reason with space-time variant data streams. The concept of multivalued decision systems has been used to account for multiple patterns in a single time window or snapshot. Such patterns or templates are incorporated in rough set-based rule induction process. A framework for sensor data integration is illustrated by using a space-time clustering mechanism followed by the generation of templates and local rules from such clusters. The multivalued decision system allows mining complex multiple patterns instead of a single value in a given template without requiring complex feature transformation. It also allows us to quantify and estimate potential data compression and associated uncertainty parameters. Finally, the results are validated and compared with other related algorithms. In general, the framework will help us understand the underlying reasoning mechanism about the ìpart and wholeî or spatio-temporal mereological relationship without sacrificing the semantics of the sensor data attributes.
+        //Abstract: Discovering novel and interesting spatio-temporal patterns in sensor data is a major challenge in many scientific domains. Such data are often continuous, unbounded, and associated with high speed, time-variant distribution with local and spatial trends. This paper presents a formalism that includes an extension of classical rough set inference mechanism to reason with space-time variant data streams. The concept of multivalued decision systems has been used to account for multiple patterns in a single time window or snapshot. Such patterns or templates are incorporated in rough set-based rule induction process. A framework for sensor data integration is illustrated by using a space-time clustering mechanism followed by the generation of templates and local rules from such clusters. The multivalued decision system allows mining complex multiple patterns instead of a single value in a given template without requiring complex feature transformation. It also allows us to quantify and estimate potential data compression and associated uncertainty parameters. Finally, the results are validated and compared with other related algorithms. In general, the framework will help us understand the underlying reasoning mechanism about the ‚Äúpart and whole‚Äù or spatio-temporal mereological relationship without sacrificing the semantics of the sensor data attributes.
         //Keywords: Spatio-temporal pattern; Multi-valued decision system
         
         // Loops continues until it reaches the end of the file
@@ -126,9 +126,8 @@ public class plainParser {
         
           	else {
         		authors = line.split(",");
-        		for (String author : authors) {
-        			metadataTable.put("Author " + i, author);
-authors [i] = author.trim();
+      		for (int x = 0; x<authors.length; x++) {
+        			metadataTable.put("Author " + x, authors[x]);
         		}
         		i++;
         	
