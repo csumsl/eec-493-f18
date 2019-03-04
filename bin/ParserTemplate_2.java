@@ -232,12 +232,10 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                 metadataTable.put("Last Page", data3[2]);
             }
             if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
-                
-            /*
-                At the moment, the keywords are separated by ";". This will need to be
-                changed to ", " in the future.
-            */
-            if(Key.equals("keywords")){Key = "Keywords";metadataTable.put(Key, Map);}
+            if (Key.equals("keywords")) {
+                Map = Map.replace(";", ", ");
+                metadataTable.put("Keywords", Map);
+            }
             if(Key.equals("doi")){Key = "DOI";metadataTable.put(Key, Map);}
             if(Key.equals("ISSN")){Key = "ISBN";metadataTable.put(Key, Map);}
             
