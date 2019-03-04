@@ -103,6 +103,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                 authors++;
             }
         }
+	// PY not pushing to excel sheet correctly?
         if(Key.equals("PY")){
         Key = "Publication year";
         metadataTable.put(Key, Map);}
@@ -139,16 +140,116 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
 }
 
 /*
+SCRAPPING TXT PARSER
 ### .TXT PARSER ###
 public static HashMap<String, String> txtParser (String path) throws FileNotFoundException, IOException {
     // Code here when finished
 }
-
+SCRAPPING TXT PARSER
+*/
+	
 ### .BIB PARSER ###
 public static HashMap<String, String> bibParser (String path) throws FileNotFoundException, IOException {
-    // Code here when finished
+        
+        HashMap<String, String> metadataTable = new HashMap<>();
+        BufferedReader br = new BufferedReader(new FileReader(path));
+        
+        // Used to read the current line in the file
+        String line;
+        String Key;
+        String Map = "";
+        int authors = 1;
+        
+        // Skips first line (first line is irrelevant in .bib files)
+        br.readLine();
+        
+        // Loops continues until it reaches the end of the file
+        while((line = br.readLine()) != null) {
+            Key = line;
+            // Checks format of .bib file
+            /*
+                Some .bib files separate the data with "{" "}"
+                and some separate with just quotations
+                This first if statement checks the first .bib format
+                * Check .bib file examples in github to know what I mean *
+            */
+            
+            // Format 1 - WORK IN PROGRESS
+            if (line.contains("{")) {
+                String[] data = line.split("[={}]");
+                // Testing purposes -Elias
+                System.out.println("0 " + data[0]); // Key
+                System.out.println("1 " + data[1]); // "={" replaced with ""
+                System.out.println("2 " + data[2]); // Data
+                System.out.println("3 " + data[3]); // Comma
+                Key = data[0];
+                Map = data[2];
+            }
+            if (Key.equals("author")) {
+                // Split author string
+                String[] data2 = Map.split(" and ");
+                // Testing purposes -Elias
+                System.out.println("0d " + data2[0]); // Author 1
+                System.out.println("1d " + data2[1]); // Author 2
+               //System.out.println("nd " + data2[n]); // Author n ...
+                /*
+                    Each data2[] value is a different author
+                    They need to be split again into:
+                        - first name/first inital
+                        - middle name/middle initial
+                        - last name/last inital
+                    Then pushed to the metadataTable
+                */
+            }
+            if(Key.equals("title")){Key = "Title";metadataTable.put(Key, Map);}
+            if(Key.equals("booktitle")){Key = "Journal";metadataTable.put(Key, Map);}
+            if(Key.equals("year")){Key = "Publication Year";metadataTable.put(Key, Map);}
+            if(Key.equals("volume")){Key = "Volume";metadataTable.put(Key, Map);}
+            if (Key.equals("pages")) {
+                String[] data3 = Map.split("-");
+                metadataTable.put("First Page", data3[0]);
+                metadataTable.put("Last Page", data3[2]);
+            }
+            if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
+                
+            /*
+                At the moment, the keywords are separated by ";". This will need to be
+                changed to ", " in the future.
+            */
+            if(Key.equals("keywords")){Key = "Keywords";metadataTable.put(Key, Map);}
+            if(Key.equals("doi")){Key = "DOI";metadataTable.put(Key, Map);}
+            if(Key.equals("ISSN")){Key = "ISBN";metadataTable.put(Key, Map);}
+            
+            // Format 2 - WORK IN PROGRESS
+            if (line.contains(" = ")) {
+                String[] data4 = line.split(" = \"");
+                // Testing purposes -Elias
+                System.out.println("0 " + data4[0]); // Key
+                System.out.println("1 " + data4[1]); // Data
+                Key = data4[0];
+                Map = data4[1].replace("\",", "");
+            }
+            if(Key.equals("title")){Key = "Title";metadataTable.put(Key, Map);}
+            if(Key.equals("journal")){Key = "Journal";metadataTable.put(Key, Map);}
+            if(Key.equals("volume")){Key = "Volume";metadataTable.put(Key, Map);}
+            if (Key.equals("pages")) {
+                String[] data6 = Map.split(" - ");
+                metadataTable.put("First Page", data6[0]);
+                metadataTable.put("Last Page", data6[1]);
+            }
+            if(Key.equals("year")){Key = "Publication Year";metadataTable.put(Key, Map);}
+            if(Key.equals("issn")){Key = "ISBN";metadataTable.put(Key, Map);}
+            if(Key.equals("url")){Key = "URL";metadataTable.put(Key, Map);}
+            if(Key.equals("doi")){Key = "DOI";metadataTable.put(Key, Map);}
+            if (Key.equals("author")) {
+                // Split authors
+                // Splitting process here...
+            }
+            if(Key.equals("keywords")){Key = "Keywords";metadataTable.put(Key, Map);}
+            if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
+        }
+        return metadataTable;
 }
-*/
 
 public static void main(String[] args) throws IOException {
     
@@ -180,32 +281,26 @@ public static void main(String[] args) throws IOException {
     for (File f: files) {
         if (f.getName().contains(".ris")) {
               metaTable = risParser(f.getPath()); //changed f.getName to f.getPath, -Alan
-             //*  Export metaTable to excel spreadsheet
+             // Export metaTable to excel spreadsheet
               
               populateCSV(metaTable, csvFile, writer);
               
             System.out.println(f.getName());
         }
-        if (f.getName().contains(".txt")) {
-            /*  metaTable = txtParser(f.getName())
-             *  Export metaTable to excel spreadsheet  
-             */ 
-            System.out.println(f.getName());
-        }
         if (f.getName().contains(".bib")) {
-            /*  metaTable = bibParser(f.getName())
-             *  Export metaTable to excel spreadsheet 
-             */  
-            System.out.println(f.getName());
+            /*  metaTable = bibParser(f.getAbsolutePath())
+                 *  Export metaTable to excel spreadsheet 
+                 */  
+                metaTable = bibParser(f.getAbsolutePath());
+                Set set = metaTable.entrySet();
+                Iterator iterator = set.iterator();
+                // Test print
+                while(iterator.hasNext()){
+                    Map.Entry mapEntry = (Map.Entry)iterator.next();
+                    System.out.println("The key is " + mapEntry.getKey() + " and the Value is " + mapEntry.getValue());
+                }
+                System.out.println(f.getName());
         }
-    }
-    
-    // metaTable = risParser(input);
-    Set set = metaTable.entrySet();
-    Iterator iterator = set.iterator();
-    while(iterator.hasNext()){
-        Map.Entry mapEntry = (Map.Entry)iterator.next();
-        System.out.println("The key is " + mapEntry.getKey() + " and the Value is " + mapEntry.getValue());
     }
     writer.close();
 }
