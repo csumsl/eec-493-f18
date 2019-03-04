@@ -191,6 +191,28 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                 System.out.println("0d " + data2[0]); // Author 1
                 System.out.println("1d " + data2[1]); // Author 2
                //System.out.println("nd " + data2[n]); // Author n ...
+		    
+		// This hasn't been tested completely, but should work in theory
+                for (int i = 0; i < data2.length; i++) {
+                    String[] name = data2[i].split(" ");
+                    if (name.length > 2) {
+                        // Author has middle name/inital
+                        // Code here...
+                        metadataTable.put("author"+authors+"_fname", name[0]);
+                        metadataTable.put("author"+authors+"_lname", name[2]);
+                        authors++;
+                        // Empties array (this is a crude solution and might be problematic)
+                        Arrays.fill(name,null);
+                    } else {
+                        // Author only has first and last name
+                        // Code here...
+                        metadataTable.put("author"+authors+"_fname", name[0]);
+                        metadataTable.put("author"+authors+"_lname", name[1]);
+                        authors++;
+                        // Empties array (this is a crude solution and might be problematic)
+                        Arrays.fill(name,null);
+                    }
+                }
                 /*
                     Each data2[] value is a different author
                     They need to be split again into:
