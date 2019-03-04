@@ -139,15 +139,6 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
     return metadataTable;
 }
 
-/*
-SCRAPPING TXT PARSER
-### .TXT PARSER ###
-public static HashMap<String, String> txtParser (String path) throws FileNotFoundException, IOException {
-    // Code here when finished
-}
-SCRAPPING TXT PARSER
-*/
-
 public static HashMap<String, String> bibParser (String path) throws FileNotFoundException, IOException {
         
         HashMap<String, String> metadataTable = new HashMap<>();
@@ -183,8 +174,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                 System.out.println("3 " + data[3]); // Comma
                 Key = data[0];
                 Map = data[2];
-            }
-            if (Key.equals("author")) {
+		if (Key.equals("author")) {
                 // Split author string
                 String[] data2 = Map.split(" and ");
                 // Testing purposes -Elias
@@ -238,6 +228,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
             }
             if(Key.equals("doi")){Key = "DOI";metadataTable.put(Key, Map);}
             if(Key.equals("ISSN")){Key = "ISBN";metadataTable.put(Key, Map);}
+            }
             
             // Format 2 - WORK IN PROGRESS
             if (line.contains(" = ")) {
@@ -247,8 +238,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                 System.out.println("1 " + data4[1]); // Data
                 Key = data4[0];
                 Map = data4[1].replace("\",", "");
-            }
-            if(Key.equals("title")){Key = "Title";metadataTable.put(Key, Map);}
+		if(Key.equals("title")){Key = "Title";metadataTable.put(Key, Map);}
             if(Key.equals("journal")){Key = "Journal";metadataTable.put(Key, Map);}
             if(Key.equals("volume")){Key = "Volume";metadataTable.put(Key, Map);}
             if (Key.equals("pages")) {
@@ -293,6 +283,8 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
             }
             if(Key.equals("keywords")){Key = "Keywords";metadataTable.put(Key, Map);}
             if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
+            }
+            
         }
         return metadataTable;
 }
@@ -326,26 +318,14 @@ public static void main(String[] args) throws IOException {
     File csvFile = CSVgen(writer);
     for (File f: files) {
         if (f.getName().contains(".ris")) {
-              metaTable = risParser(f.getPath()); //changed f.getName to f.getPath, -Alan
-             // Export metaTable to excel spreadsheet
-              
-              populateCSV(metaTable, csvFile, writer);
-              
+            metaTable = risParser(f.getPath());
+            populateCSV(metaTable, csvFile, writer);
             System.out.println(f.getName());
         }
         if (f.getName().contains(".bib")) {
-            /*  metaTable = bibParser(f.getAbsolutePath())
-                 *  Export metaTable to excel spreadsheet 
-                 */  
-                metaTable = bibParser(f.getAbsolutePath());
-                Set set = metaTable.entrySet();
-                Iterator iterator = set.iterator();
-                // Test print
-                while(iterator.hasNext()){
-                    Map.Entry mapEntry = (Map.Entry)iterator.next();
-                    System.out.println("The key is " + mapEntry.getKey() + " and the Value is " + mapEntry.getValue());
-                }
-                System.out.println(f.getName());
+            metaTable = bibParser(f.getPath());
+            populateCSV(metaTable, csvFile, writer);
+            System.out.println(f.getName());
         }
     }
     writer.close();
