@@ -263,6 +263,33 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
             if (Key.equals("author")) {
                 // Split authors
                 // Splitting process here...
+                String[] data7 = Map.split(" and ");
+                // Testing purposes -Elias
+                System.out.println("0d " + data7[0]); // Author 1
+                System.out.println("1d " + data7[1]); // Author 2
+              //System.out.println("nd " + data2[n]); // Author n ...
+                
+                // This hasn't been tested completely, but should work in theory
+                for (int i = 0; i < data7.length; i++) {
+                    String[] name = data7[i].split(" ");
+                    if (name.length > 2) {
+                        // Author has middle name/inital
+                        // Code here...
+                        metadataTable.put("author"+authors+"_fname", name[0]);
+                        metadataTable.put("author"+authors+"_lname", name[2]);
+                        authors++;
+                        // Empties array (this is a crude solution and might be problematic)
+                        Arrays.fill(name,null);
+                    } else {
+                        // Author only has first and last name
+                        // Code here...
+                        metadataTable.put("author"+authors+"_fname", name[0]);
+                        metadataTable.put("author"+authors+"_lname", name[1]);
+                        authors++;
+                        // Empties array (this is a crude solution and might be problematic)
+                        Arrays.fill(name,null);
+                    }
+                }
             }
             if(Key.equals("keywords")){Key = "Keywords";metadataTable.put(Key, Map);}
             if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
