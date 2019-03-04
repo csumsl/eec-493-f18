@@ -147,8 +147,7 @@ public static HashMap<String, String> txtParser (String path) throws FileNotFoun
 }
 SCRAPPING TXT PARSER
 */
-	
-### .BIB PARSER ###
+
 public static HashMap<String, String> bibParser (String path) throws FileNotFoundException, IOException {
         
         HashMap<String, String> metadataTable = new HashMap<>();
