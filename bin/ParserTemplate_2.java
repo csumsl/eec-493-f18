@@ -1,4 +1,4 @@
-package seniorproject;
+package parsertemplate;
 
 /*
 This template serves as the basis for all our future parsers.
@@ -302,7 +302,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
 return metadataTable;
 }
 
-/* ### BIB PARSER ###*/
+/* ### .BIB PARSER ### */
 public static HashMap<String, String> bibParser (String path) throws FileNotFoundException, IOException {
         
         HashMap<String, String> metadataTable = new HashMap<>();
@@ -338,33 +338,58 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                 System.out.println("3 " + data[3]); // Comma
                 Key = data[0];
                 Map = data[2];
+                // Fixes key's with whitespace
+                if (Key.contains(" ")) {
+                    Key = Key.replace(" ", "");
+                }
 		if (Key.equals("author")) {
-                    
                 // Split authors here (Authors are separated like so:
                 //                     "John Doe and Marge Thatcher")  
-                String[] data2 = Map.split(" and ");
-                
-                for (int i = 0; i < data2.length; i++) {
-                    // Split authors once more. They are now only separated by " "
-                    // We're using a List here so we're able to empty the array completely later
-                    List<String> name = Arrays.asList(data2[i].split(" "));
-                    if (name.size() > 2) {
-                        // Author has middle name/inital
-                        metadataTable.put("author"+authors+"_fname", name.get(0));
-                        metadataTable.put("author"+authors+"_mname", name.get(1));
-                        metadataTable.put("author"+authors+"_lname", name.get(2));
-                        authors++;
-                        // Empties array
-                        name = new ArrayList<>();
-                    } else {
-                        // Author only has first and last name
-                        metadataTable.put("author"+authors+"_fname", name.get(0));
-                        metadataTable.put("author"+authors+"_lname", name.get(1));
-                        authors++;
-                        // Empties array
-                        name = new ArrayList<>();
+                    String[] data2 = Map.split(" and ");
+                    for (int i = 0; i < data2.length; i++) {
+                        // Split authors once more. They are now only separated by " " or by ", "
+                        // We're using a List here so we're able to empty the array completely later
+
+                        // If they're separated by ", ", split like this
+                        if (data2[i].contains(", ")) {
+                            List<String> name = Arrays.asList(data2[i].split("[, ]"));
+                            if (name.size() > 3) {
+                                // Author has middle name/inital
+                                metadataTable.put("author"+authors+"_lname", name.get(0));
+                                metadataTable.put("author"+authors+"_mname", name.get(3));
+                                metadataTable.put("author"+authors+"_fname", name.get(2));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            } else {
+                                // Author only has first and last name
+                                metadataTable.put("author"+authors+"_lname", name.get(0));
+                                metadataTable.put("author"+authors+"_fname", name.get(2));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            }
+                        // If they're separated by " ", split like this
+                        } else {
+                            List<String> name = Arrays.asList(data2[i].split(" "));
+                            if (name.size() > 2) {
+                                // Author has middle name/inital
+                                metadataTable.put("author"+authors+"_fname", name.get(0));
+                                metadataTable.put("author"+authors+"_mname", name.get(1));
+                                metadataTable.put("author"+authors+"_lname", name.get(2));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            } else {
+                                // Author only has first and last name
+                                metadataTable.put("author"+authors+"_fname", name.get(0));
+                                metadataTable.put("author"+authors+"_lname", name.get(1));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            }
+                        }
                     }
-                }
                 /*
                     Each data2[] value is a different author
                     They need to be split again into:
@@ -380,8 +405,13 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
             if(Key.equals("volume")){Key = "volnum";metadataTable.put(Key, Map);}
             if (Key.equals("pages")) {
                 String[] data3 = Map.split("-");
-                metadataTable.put("First page", data3[0]);
-                metadataTable.put("Last page", data3[1]);
+                if (data3.length > 2) {
+                    metadataTable.put("First page", data3[0]);
+                    metadataTable.put("Last page", data3[2]);
+                } else {
+                    metadataTable.put("First page", data3[0]);
+                    metadataTable.put("Last page", data3[1]);
+                }
             }
             if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
             if (Key.equals("keywords")) {
@@ -393,7 +423,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
             }
             
             // Format 2 - WORK IN PROGRESS
-            if (line.contains(" = ")) {
+            if (line.contains("\",")) {
                 String[] data4 = line.split(" = \"");
                 // Testing purposes -Elias
                 System.out.println("Key " + data4[0]); // Key
