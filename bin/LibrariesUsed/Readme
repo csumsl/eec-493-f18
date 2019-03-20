@@ -1,0 +1,5 @@
+This folder contains all the libraries used/going to be used in the final product.
+
+First submission:
+  - GSON
+      - GSON is a Json tool used in java to parse json files
