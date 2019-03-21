@@ -485,14 +485,10 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
     String fetchedMetadata = null;
     // Test print of recovered HTML source code
     // + Extracting line that contains metadata (global.document.metadata)
-    for (int l = 0; l < html.size(); l++) {
-        System.out.println("Line " + l + ": " + html.get(l));
-        if (html.get(l).contains("global.document.metadata")) {
-            fetchedMetadata = html.get(l);
-        } else {
-            System.out.println("IEEExplore could not be parsed.");
-            return input;
-        }
+    for (int i = 0; i < html.size(); i++) {
+        System.out.println("Line " + i + ": " + html.get(i));
+        if (html.get(i).contains("global.document.metadata"))
+            fetchedMetadata = html.get(i);
     }
     if (fetchedMetadata == null) {
         return input;
@@ -727,38 +723,34 @@ public static String getFinalURL(String url) throws IOException {
     HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
     con.setInstanceFollowRedirects(false);
     con.connect();
-    String redirectUrl = con.getHeaderField("Location");
+    if (con.getResponseCode() == 403) {
+        return url;
+    }
     con.getInputStream();
-    con.getURL();
 
-    /*if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
-        String redirectUrl2 = con.getHeaderField("Location");
-        return getFinalURL(redirectUrl2);
-    }*/
-    return redirectUrl;
+    if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
+        String redirectUrl = con.getHeaderField("Location");
+        return getFinalURL(redirectUrl);
+    }
+    return url;
 }
     
 // Alternative to Jsoup -- Puts HTML source code into ArrayList
-public static ArrayList fetchHTML(String u) throws Exception {
+public static ArrayList fetchHTML(String url) throws Exception {
     
-    System.out.println("Grabbing HTML source code from: " + u);
-    // example print: Grabbing HTML source code from: http://ieeexplore.ieee.org/document/7535223/
-    URL url = new URL(u);
-    BufferedReader input = new BufferedReader(new InputStreamReader(url.openStream()));
-    
+    System.out.println("Grabbing HTML source code from: " + url);
+    Scanner s;
+    URL u;
+    u = new URL(url);
+    s = new Scanner(u.openStream());
     // Where the raw HTML source code will be stored
     ArrayList<String> html = new ArrayList<String>();
-    
     int i = 0;
-    String line;
-    
-    // Never goes in while loop?
-    while ((line = input.readLine()) != null) {
-        html.add(line);
+    while (s.hasNext()) {
+        html.add(s.nextLine());
         System.out.println(html.get(i));
         i++;
     }
-    input.close();
     return html;
 }
 
