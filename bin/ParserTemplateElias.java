@@ -486,7 +486,7 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
     // Test print of recovered HTML source code
     // + Extracting line that contains metadata (global.document.metadata)
     for (int i = 0; i < html.size(); i++) {
-        System.out.println("Line " + i + ": " + html.get(i));
+        //System.out.println("Line " + i + ": " + html.get(i));
         if (html.get(i).contains("global.document.metadata"))
             fetchedMetadata = html.get(i);
     }
@@ -514,7 +514,7 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
 
         int i = 0;
         int j = 1;
-        while (j != authors.size()) {
+        while (j != authors.size() + 1) {
             if (authors.get(i).contains(input.get("author" + j + "_lname"))) {
                 System.out.println("Found: " + (input.get("author"+ j +"_lname")));
                 if (authors.get(i).contains("affiliation")) {
@@ -684,7 +684,7 @@ public static void populateCSV(HashMap<String, String> input, File csvFile, Prin
         bigString = csvHelper(input, "author" + i + "_lname", bigString);
         bigString = csvHelper(input, "author" + i + "_suffix", bigString);
         bigString = csvHelper(input, "author" + i + "_email", bigString);
-        bigString = csvHelper(input, "author" + i + "_instutution", bigString);
+        bigString = csvHelper(input, "author" + i + "_institution", bigString);
         bigString = csvHelper(input, "author" + i + "_is_corporate", bigString);
     }
     bigString = csvHelper(input, "article_desc", bigString);
@@ -748,7 +748,7 @@ public static ArrayList fetchHTML(String url) throws Exception {
     int i = 0;
     while (s.hasNext()) {
         html.add(s.nextLine());
-        System.out.println(html.get(i));
+        //System.out.println(html.get(i));
         i++;
     }
     return html;
