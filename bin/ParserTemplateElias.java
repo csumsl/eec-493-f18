@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.google.gson.*;
-import java.io.InputStreamReader;
 
 public class ParserTemplate {
     
@@ -582,6 +581,9 @@ public static void main(String[] args) throws IOException, Exception {
                 url = metaTable.get("URL");
                 System.out.println("URL print test via URL: " + url);
                 // Checks which HTML parser is needed if any
+                if (url.contains("doi.org")) {
+                    url = getFinalURL(url);
+                }
                 if (url.contains("ieee")) {
                     html = fetchHTML(url);
                     metaTable = ieeeParser(metaTable, html);
@@ -619,6 +621,9 @@ public static void main(String[] args) throws IOException, Exception {
                 url = metaTable.get("URL");
                 System.out.println("URL print test via URL: " + url);
                 // Checks which HTML parser is needed if any
+                if (url.contains("doi.org")) {
+                    url = getFinalURL(url);
+                }
                 if (url.contains("ieee")) {
                     html = fetchHTML(url);
                     metaTable = ieeeParser(metaTable, html);
@@ -724,6 +729,11 @@ public static String getFinalURL(String url) throws IOException {
     con.setInstanceFollowRedirects(false);
     con.connect();
     if (con.getResponseCode() == 403) {
+        System.out.println("HTTP response code: 403 - Forbidden");
+        return url;
+    }
+    if (con.getResponseCode() == 503) {
+        System.out.println("HTTP response code: 503 - Service Unavailable");
         return url;
     }
     con.getInputStream();
