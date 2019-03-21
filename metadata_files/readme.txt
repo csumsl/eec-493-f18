@@ -3,7 +3,7 @@ Goals for this step in the project:
 1. Create a parser in Java for each file type
 	- .ris parser
 	- bibtext parser
-	- plaintext parser
+	- plaintext parser [EDIT: No longer developing plaintext parser]
 
 1a.
 	- The parser should realistically only go through the metadata file once and gather all the information
