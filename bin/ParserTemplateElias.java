@@ -1,4 +1,3 @@
-package parsertemplate;
 
 /*
 This template serves as the basis for all our future parsers.
@@ -20,10 +19,11 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 
 import com.google.gson.*;
 
-public class ParserTemplate {
+public class ParserTemplateElias {
     
 /* ### .RIS PARSER ### */
 public static HashMap<String, String> risParser (String path) throws FileNotFoundException, IOException {
@@ -539,6 +539,39 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
     }
 }
 
+public static HashMap<String, String> springerParser (HashMap<String, String> input, ArrayList<String> html) {
+	for(int i = 0; i < html.size(); i++) {
+		if(html.get(i).contains("\"citation_author\"")) {
+			int slice = 0;
+			String currentString = html.get(i);
+			slice = currentString.indexOf("content=\"") + 9;
+			String author[] = currentString.substring(slice, currentString.length() - 3).split(" ");
+			Vector<String> institutions = new Vector<String>();
+			String institution = "";
+			while(html.get(i + 1).contains("\"citation_author_institution\"")) { //Find institutions
+				i++;
+				currentString = html.get(i);
+				slice = currentString.indexOf("content=\"") + 9;
+				institutions.addElement(currentString.substring(slice, currentString.length() - 3));
+				
+			}
+			for(int k = 1; k < 10; k++) {
+				System.out.println(author[0] + " is compared with " + input.get("author" + k + "_fname") + " and " + author[1] + " is compared with " + input.get("author" + k + "_lname"));
+				if(author[0].equals(input.get("author" + k + "_fname")) && author[author.length - 1].equals(input.get("author" + k + "_lname"))) { //Find the author for the institution.
+					String formattedInstitutions = institutions.get(0);
+					for(int l = 1; l < institutions.size(); l++) {
+						formattedInstitutions += ", " + institutions.get(l);
+					}
+					input.put("author" + k + "_institution", formattedInstitutions);
+					break;
+				}
+			}
+
+		}
+	}
+	return null;
+}
+
 public static void main(String[] args) throws IOException, Exception {
     
     HashMap<String, String> metaTable = new HashMap<>();
@@ -591,6 +624,8 @@ public static void main(String[] args) throws IOException, Exception {
                     // Call asme parser
                 } else if (url.contains("springer")) {
                     // Call springer parser
+                	html = fetchHTML(url);
+                	springerParser(metaTable, html);
                 } else {
                     System.out.println("This URL does not have a supported parser.");
                 }
@@ -606,6 +641,8 @@ public static void main(String[] args) throws IOException, Exception {
                     // Call asme parser
                 } else if (finalURL.contains("springer")) {
                     // Call springer parser
+                	html = fetchHTML(finalURL);
+                	System.out.println("THIS HAPPENED");
                 } else {
                     System.out.println("This URL does not have a supported parser.");
                 }
@@ -630,6 +667,8 @@ public static void main(String[] args) throws IOException, Exception {
                 } else if (url.contains("asme")) {
                     // Call asme parser
                 } else if (url.contains("springer")) {
+                    html = fetchHTML(url);
+                    metaTable = springerParser(metaTable, html);
                     // Call springer parser
                 } else {
                     System.out.println("This URL does not have a supported parser.");
@@ -646,6 +685,8 @@ public static void main(String[] args) throws IOException, Exception {
                     // Call asme parser
                 } else if (finalURL.contains("springer")) {
                     // Call springer parser
+                    html = fetchHTML(finalURL);
+                    metaTable = springerParser(metaTable, html);
                 } else {
                     System.out.println("This URL does not have a supported parser.");
                 }
