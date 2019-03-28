@@ -1,3 +1,4 @@
+package parsertemplate;
 
 /*
 This template serves as the basis for all our future parsers.
@@ -23,7 +24,7 @@ import java.util.Vector;
 
 import com.google.gson.*;
 
-public class ParserTemplateElias {
+public class ParserTemplate {
     
 /* ### .RIS PARSER ### */
 public static HashMap<String, String> risParser (String path) throws FileNotFoundException, IOException {
@@ -58,7 +59,6 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
         // Loops continues until it reaches the end of the file
         while((line = br.readLine()) != null) {
             
-            Key = line;
             String[] data = line.split(" ");
             Key = data[0];
             if(data.length > 3){
@@ -319,16 +319,16 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
 
     // Loops continues until it reaches the end of the file
     while((line = br.readLine()) != null) {
-        Key = line;
-        // Checks format of .bib file
+        
         /*
             Some .bib files separate the data with "{" "}"
             and some separate with just quotations
             This first if statement checks the first .bib format
-            *** Check .bib file examples in github to know what I mean ***
         */
-
-        // Format 1 - WORK IN PROGRESS
+        if (line.isEmpty()) {
+            br.readLine();
+        }
+        // Format 1
         if (line.contains("{")) {
             String[] data = line.split("[={}]");
             // Testing purposes -Elias
@@ -342,18 +342,240 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
             if (Key.contains(" ")) {
                 Key = Key.replace(" ", "");
             }
-            if (Key.equals("author")) {
-            // Split authors here (Authors are separated like so:
-            //                     "John Doe and Marge Thatcher")  
-                String[] data2 = Map.split(" and ");
-                for (int i = 0; i < data2.length; i++) {
-                    // Split authors once more. They are now only separated by " " or by ", "
-                    // We're using a List here so we're able to empty the array completely later
+            if (Key.equals("author") || Key.equals("Author")) {
+                // If there's only one author
+                if (!Map.contains(" and ")) {
+                    List<String> name = Arrays.asList(Map.split("[, ]"));
+                    if (Map.contains(", ")) {
+                        // Author has middle name/inital
+                        metadataTable.put("author"+authors+"_lname", name.get(0));
+                        metadataTable.put("author"+authors+"_mname", name.get(3));
+                        metadataTable.put("author"+authors+"_fname", name.get(2));
+                        authors++;
+                        // Empties array
+                        name = new ArrayList<>();
+                    } else {
+                        // Author only has first and last name
+                        metadataTable.put("author"+authors+"_lname", name.get(0));
+                        metadataTable.put("author"+authors+"_fname", name.get(2));
+                        authors++;
+                        // Empties array
+                        name = new ArrayList<>();
+                    }
+                } else {
+                    // Split authors here
+                    // (Authors are separated like so: "John Doe and Marge Thatcher")  
+                    String[] data2 = Map.split(" and ");
+                    for (int i = 0; i < data2.length; i++) {
+                        // Split authors once more. They are now only separated by " " or by ", "
+                        // We're using a List here so we're able to empty the array completely later
 
-                    // If they're separated by ", ", split like this
-                    if (data2[i].contains(", ")) {
-                        List<String> name = Arrays.asList(data2[i].split("[, ]"));
-                        if (name.size() > 3) {
+                        // If they're separated by ", ", split like this
+                        if (data2[i].contains(", ")) {
+                            List<String> name = Arrays.asList(data2[i].split("[, ]"));
+                            if (name.size() > 3) {
+                                // Author has middle name/inital
+                                metadataTable.put("author"+authors+"_lname", name.get(0));
+                                metadataTable.put("author"+authors+"_mname", name.get(3));
+                                metadataTable.put("author"+authors+"_fname", name.get(2));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            } else {
+                                // Author only has first and last name
+                                metadataTable.put("author"+authors+"_lname", name.get(0));
+                                metadataTable.put("author"+authors+"_fname", name.get(2));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            }
+                        // If they're separated by " ", split like this
+                        } else {
+                            List<String> name = Arrays.asList(data2[i].split(" "));
+                            if (name.size() > 2) {
+                                // Author has middle name/inital
+                                metadataTable.put("author"+authors+"_fname", name.get(0));
+                                metadataTable.put("author"+authors+"_mname", name.get(1));
+                                metadataTable.put("author"+authors+"_lname", name.get(2));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            } else {
+                                // Author only has first and last name
+                                metadataTable.put("author"+authors+"_fname", name.get(0));
+                                metadataTable.put("author"+authors+"_lname", name.get(1));
+                                authors++;
+                                // Empties array
+                                name = new ArrayList<>();
+                            }
+                        }
+                    }
+                /*
+                    Each data2[] value is a different author
+                    They need to be split again into:
+                        - first name/first inital
+                        - middle name/middle initial
+                        - last name/last inital
+                    Then pushed to the metadataTable
+                */
+                }
+            }
+        if(Key.equals("title") || Key.equals("Title")){Key = "Title";metadataTable.put(Key, Map);}
+        if(Key.equals("journal") || Key.equals("Journal") || Key.equals("booktitle") || Key.equals("Booktitle")){Key = "source publication";metadataTable.put(Key, Map);}
+        if(Key.equals("year") || Key.equals("Year")){Key = "publication_date";metadataTable.put(Key, Map);}
+        if(Key.equals("volume") || Key.equals("Volume")){Key = "volnum";metadataTable.put(Key, Map);}
+        if (Key.equals("pages") || Key.equals("Pages")) {
+            String[] data3 = Map.split("-");
+            if (data3.length > 2) {
+                metadataTable.put("First page", data3[0]);
+                metadataTable.put("Last page", data3[2]);
+            } else {
+                metadataTable.put("First page", data3[0]);
+                metadataTable.put("Last page", data3[1]);
+            }
+        }
+        if(Key.equals("abstract") || Key.equals("Abstract")) {
+            Key = "Abstract";
+            metadataTable.put(Key,Map);
+        }
+        if (Key.equals("keywords") || Key.equals("Keywords")) {
+            if (Map.contains(";")) {
+                Map = Map.replace(";", ", ");
+                metadataTable.put("Keywords", Map);
+            } else {
+                metadataTable.put("Keywords", Map);
+            }
+        }
+        if(Key.equals("doi") || Key.equals("DOI") || Key.equals("Doi")){Key = "DOI";metadataTable.put(Key, Map);}
+        if(Key.equals("url") || Key.equals("URL")){Key = "URL";metadataTable.put(Key, Map);}
+        if(Key.equals("ISSN") || Key.equals("issn")){Key = "ISBN";metadataTable.put(Key, Map);}
+        }
+
+        // Format 2
+        if (line.contains("\",")) {
+            String[] data4 = line.split(" = \"");
+            // Testing purposes -Elias
+            //System.out.println("Key " + data4[0]); // Key
+            //System.out.println("Map " + data4[1]); // Data
+            Key = data4[0];
+            Map = data4[1].replace("\",", "");
+            if(Key.equals("title") || Key.equals("Title")){Key = "Title";metadataTable.put(Key, Map);}
+            if(Key.equals("journal") || Key.equals("Journal") || Key.equals("booktitle") || Key.equals("Booktitle")){Key = "source publication";metadataTable.put(Key, Map);}
+            if(Key.equals("volume") || Key.equals("Volume")){Key = "volnum";metadataTable.put(Key, Map);}
+            if (Key.equals("pages") || Key.equals("Pages")) {
+                String[] data6 = Map.split(" - ");
+                metadataTable.put("First page", data6[0]);
+                metadataTable.put("Last page", data6[1]);
+            }
+            if(Key.equals("year") || Key.equals("Year")){Key = "publication_date";metadataTable.put(Key, Map);}
+            if(Key.equals("issn") || Key.equals("ISSN")){Key = "ISBN";metadataTable.put(Key, Map);}
+            if(Key.equals("url") || Key.equals("URL")){Key = "URL";metadataTable.put(Key, Map);}
+            if(Key.equals("doi") || Key.equals("DOI") || Key.equals("Doi")){Key = "DOI";metadataTable.put(Key, Map);}
+            if (Key.equals("author") || Key.equals("Author")) {
+
+                // Split authors here (Authors are separated like so:
+                //                     "John Doe and Marge Thatcher")  
+                String[] data7 = Map.split(" and ");
+
+                for (int i = 0; i < data7.length; i++) {
+                    // Split authors once more. They are now only separated by " "
+                    // We're using a List here so we're able to empty the array completely later
+                    List<String> name = Arrays.asList(data7[i].split(" "));
+                    if (name.size() > 2) {
+                        // Author has middle name/inital
+                        metadataTable.put("author"+authors+"_fname", name.get(0));
+                        metadataTable.put("author"+authors+"_mname", name.get(1));
+                        metadataTable.put("author"+authors+"_lname", name.get(2));
+                        authors++;
+                        // Empties array
+                        name = new ArrayList<>();
+                    } else {
+                        // Author only has first and last name
+                        metadataTable.put("author"+authors+"_fname", name.get(0));
+                        metadataTable.put("author"+authors+"_lname", name.get(1));
+                        authors++;
+                        // Empties array
+                        name = new ArrayList<>();
+                    }
+                }
+            }
+            if (Key.equals("keywords") || Key.equals("Keywords")) {
+                if (Map.contains(";")) {
+                    Map = Map.replace(";", ", ");
+                    metadataTable.put("Keywords", Map);
+                } else {
+                    metadataTable.put("Keywords", Map);
+                }
+            }
+            if (Key.equals("abstract") || Key.equals("Abstract")) {
+                Key = "Abstract";
+                metadataTable.put(Key, Map);
+            }
+        }
+        if (line.startsWith("abstract = \"") || line.startsWith("Abstract = \"")) {
+            String[] data = line.split(" = \"");
+            Key = data[0];
+            Map = data[1].replace("\"", "");
+            if (Key.equals("abstract") || Key.equals("Abstract")) {
+                Key = "Abstract";
+                metadataTable.put(Key, Map);
+            }
+        }
+    }
+    return metadataTable;
+}
+
+/* ### .BIB Multiple Articles PARSER ### */
+public static HashMap<String, String> bibParser_multipleArticles (String path, File csvFile, PrintWriter writer) throws FileNotFoundException, IOException {
+    
+    HashMap<String, String> metadataTable = new HashMap<>();
+    BufferedReader br = new BufferedReader(new FileReader(path));
+
+    // Used to read the current line in the file
+    String line;
+    
+    String Key;
+    String Map = "";
+    int authors = 1;
+
+    // Skips first two lines
+    br.readLine(); br.readLine();
+    
+    // Loops continues until it reaches the end of the file
+    while((line = br.readLine()) != null) {
+        
+        // Checks if the current line is at the end of an article's metadata
+        // Also writes to excel
+        if (line.startsWith("}")) {
+            br.readLine();
+            br.readLine();
+            // If it reaches here then the first article in the bib file should be
+            // completed and all the metadata is in the hashmap
+            populateCSV(metadataTable, csvFile, writer);
+            // Clears hashmap for next article
+            metadataTable.clear();
+        }
+        
+        if (line.contains("{")) {
+            String[] data = line.split("[={}]");
+            Key = data[0];
+            // if data.length = 4 then there is more data to grab for that key
+            if (data.length == 4) {
+                line = br.readLine();
+                while (line.startsWith("   ")) {
+                    if (line.endsWith("}},")) {
+                        data[3] = data[3].concat(" " + line.replaceFirst("   ", ""));
+                        break;
+                    }
+                    data[3] = data[3].concat(" " + line.replaceFirst("   ", ""));
+                    line = br.readLine();
+                }
+                if (Key.contains("Author") || Key.contains("author")) {
+                    Map = data[2];
+                    // If there's only one author
+                    if (!Map.contains(" and ")) {
+                        List<String> name = Arrays.asList(Map.split("[, ]"));
+                        if (name.size() == 4) {
                             // Author has middle name/inital
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_mname", name.get(3));
@@ -369,113 +591,230 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                             // Empties array
                             name = new ArrayList<>();
                         }
-                    // If they're separated by " ", split like this
                     } else {
-                        List<String> name = Arrays.asList(data2[i].split(" "));
-                        if (name.size() > 2) {
+                        // Split authors here
+                        // (Authors are separated like so: "John Doe and Marge Thatcher")  
+                        String[] data2 = Map.split(" and ");
+                        for (int i = 0; i < data2.length; i++) {
+                            // Split authors once more. They are now only separated by " " or by ", "
+                            // We're using a List here so we're able to empty the array completely later
+
+                            // If they're separated by ", ", split like this
+                            if (data2[i].contains(", ")) {
+                                List<String> name = Arrays.asList(data2[i].split("[, ]"));
+                                if (name.size() > 3) {
+                                    // Author has middle name/inital
+                                    metadataTable.put("author"+authors+"_lname", name.get(0));
+                                    metadataTable.put("author"+authors+"_mname", name.get(3));
+                                    metadataTable.put("author"+authors+"_fname", name.get(2));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                } else {
+                                    // Author only has first and last name
+                                    metadataTable.put("author"+authors+"_lname", name.get(0));
+                                    metadataTable.put("author"+authors+"_fname", name.get(2));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                }
+                            // If they're separated by " ", split like this
+                            } else {
+                                List<String> name = Arrays.asList(data2[i].split(" "));
+                                if (name.size() > 2) {
+                                    // Author has middle name/inital
+                                    metadataTable.put("author"+authors+"_fname", name.get(0));
+                                    metadataTable.put("author"+authors+"_mname", name.get(1));
+                                    metadataTable.put("author"+authors+"_lname", name.get(2));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                } else {
+                                    // Author only has first and last name
+                                    metadataTable.put("author"+authors+"_fname", name.get(0));
+                                    metadataTable.put("author"+authors+"_lname", name.get(1));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                }
+                            }
+                        }
+                    }
+                }
+                Map = data[3].replace("}},", "");
+                if (Key.equals("title") || Key.equals("Title")) {
+                    metadataTable.put("Title", Map);
+                }
+                if(Key.equals("journal") || Key.equals("Journal") || Key.equals("booktitle") || Key.equals("Booktitle")) {
+                    metadataTable.put("source publication", Map);
+                }
+                if(Key.equals("year") || Key.equals("Year")) {
+                    metadataTable.put("publication_date", Map);
+                }
+                if(Key.equals("volume") || Key.equals("Volume")) {
+                    metadataTable.put("volnum", Map);
+                }
+                if (Key.equals("pages") || Key.equals("Pages")) {
+                    String[] data3 = Map.split("-");
+                    if (data3.length > 2) {
+                        metadataTable.put("First page", data3[0]);
+                        metadataTable.put("Last page", data3[2]);
+                    } else {
+                        metadataTable.put("First page", data3[0]);
+                        metadataTable.put("Last page", data3[1]);
+                    }
+                }
+                if(Key.equals("abstract") || Key.equals("Abstract")) {
+                    metadataTable.put("Abstract", Map);
+                }
+                if (Key.equals("keywords") || Key.equals("Keywords")) {
+                    if (Map.contains(";")) {
+                        Map = Map.replace(";", ", ");
+                        metadataTable.put("Keywords", Map);
+                    } else {
+                        metadataTable.put("Keywords", Map);
+                    }
+                }
+                if(Key.equals("doi") || Key.equals("DOI") || Key.equals("Doi")) {
+                    metadataTable.put("DOI", Map);
+                }
+                if(Key.equals("ISSN") || Key.equals("issn")) {
+                    metadataTable.put("ISSN", Map);
+                }
+                
+                // Test print
+                for (int i = 0; i < data.length; i++) {
+                    if (i == 3) {
+                        System.out.println(i + ": " + data[3].replace("}},", ""));
+                    } else {
+                        System.out.println(i + ": " + data[i]);
+                    }
+                }
+            }
+            
+            // if data.length = 6 then all the data has been found
+            if (data.length == 6) {
+                Key = data[0];
+                Map = data[3];
+                if (Key.contains("Author") || Key.contains("author")) {
+                    // If there's only one author
+                    if (!Map.contains(" and ")) {
+                        List<String> name = Arrays.asList(Map.split("[, ]"));
+                        if (name.size() == 4) {
                             // Author has middle name/inital
-                            metadataTable.put("author"+authors+"_fname", name.get(0));
-                            metadataTable.put("author"+authors+"_mname", name.get(1));
-                            metadataTable.put("author"+authors+"_lname", name.get(2));
+                            metadataTable.put("author"+authors+"_lname", name.get(0));
+                            metadataTable.put("author"+authors+"_mname", name.get(3));
+                            metadataTable.put("author"+authors+"_fname", name.get(2));
                             authors++;
                             // Empties array
                             name = new ArrayList<>();
                         } else {
                             // Author only has first and last name
-                            metadataTable.put("author"+authors+"_fname", name.get(0));
-                            metadataTable.put("author"+authors+"_lname", name.get(1));
+                            metadataTable.put("author"+authors+"_lname", name.get(0));
+                            metadataTable.put("author"+authors+"_fname", name.get(2));
                             authors++;
                             // Empties array
                             name = new ArrayList<>();
                         }
+                    } else {
+                        // Split authors here
+                        // (Authors are separated like so: "John Doe and Marge Thatcher")  
+                        String[] data2 = Map.split(" and ");
+                        for (int i = 0; i < data2.length; i++) {
+                            // Split authors once more. They are now only separated by " " or by ", "
+                            // We're using a List here so we're able to empty the array completely later
+
+                            // If they're separated by ", ", split like this
+                            if (data2[i].contains(", ")) {
+                                List<String> name = Arrays.asList(data2[i].split("[, ]"));
+                                if (name.size() > 3) {
+                                    // Author has middle name/inital
+                                    metadataTable.put("author"+authors+"_lname", name.get(0));
+                                    metadataTable.put("author"+authors+"_mname", name.get(3));
+                                    metadataTable.put("author"+authors+"_fname", name.get(2));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                } else {
+                                    // Author only has first and last name
+                                    metadataTable.put("author"+authors+"_lname", name.get(0));
+                                    metadataTable.put("author"+authors+"_fname", name.get(2));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                }
+                            // If they're separated by " ", split like this
+                            } else {
+                                List<String> name = Arrays.asList(data2[i].split(" "));
+                                if (name.size() > 2) {
+                                    // Author has middle name/inital
+                                    metadataTable.put("author"+authors+"_fname", name.get(0));
+                                    metadataTable.put("author"+authors+"_mname", name.get(1));
+                                    metadataTable.put("author"+authors+"_lname", name.get(2));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                } else {
+                                    // Author only has first and last name
+                                    metadataTable.put("author"+authors+"_fname", name.get(0));
+                                    metadataTable.put("author"+authors+"_lname", name.get(1));
+                                    authors++;
+                                    // Empties array
+                                    name = new ArrayList<>();
+                                }
+                            }
+                        }
                     }
                 }
-            /*
-                Each data2[] value is a different author
-                They need to be split again into:
-                    - first name/first inital
-                    - middle name/middle initial
-                    - last name/last inital
-                Then pushed to the metadataTable
-            */
-        }
-        if(Key.equals("title")){Key = "Title";metadataTable.put(Key, Map);}
-        if(Key.equals("booktitle")){Key = "source publication";metadataTable.put(Key, Map);}
-        if(Key.equals("year")){Key = "publication_date";metadataTable.put(Key, Map);}
-        if(Key.equals("volume")){Key = "volnum";metadataTable.put(Key, Map);}
-        if (Key.equals("pages")) {
-            String[] data3 = Map.split("-");
-            if (data3.length > 2) {
-                metadataTable.put("First page", data3[0]);
-                metadataTable.put("Last page", data3[2]);
-            } else {
-                metadataTable.put("First page", data3[0]);
-                metadataTable.put("Last page", data3[1]);
-            }
-        }
-        if(Key.equals("abstract")){Key = "Abstract";metadataTable.put(Key, Map);}
-        if (Key.equals("keywords")) {
-            Map = Map.replace(";", ", ");
-            metadataTable.put("Keywords", Map);
-        }
-        if(Key.equals("doi")){Key = "DOI";metadataTable.put(Key, Map);}
-        if(Key.equals("ISSN")){Key = "ISBN";metadataTable.put(Key, Map);}
-        }
-
-        // Format 2 - WORK IN PROGRESS
-        if (line.contains("\",")) {
-            String[] data4 = line.split(" = \"");
-            // Testing purposes -Elias
-            //System.out.println("Key " + data4[0]); // Key
-            //System.out.println("Map " + data4[1]); // Data
-            Key = data4[0];
-            Map = data4[1].replace("\",", "");
-        if(Key.equals("title")){Key = "Title";metadataTable.put(Key, Map);}
-        if(Key.equals("journal")){Key = "source publication";metadataTable.put(Key, Map);}
-        if(Key.equals("volume")){Key = "volnum";metadataTable.put(Key, Map);}
-        if (Key.equals("pages")) {
-            String[] data6 = Map.split(" - ");
-            metadataTable.put("First page", data6[0]);
-            metadataTable.put("Last page", data6[1]);
-        }
-        if(Key.equals("year")){Key = "publication_date";metadataTable.put(Key, Map);}
-        if(Key.equals("issn")){Key = "ISBN";metadataTable.put(Key, Map);}
-        if(Key.equals("url")){Key = "URL";metadataTable.put(Key, Map);}
-        if(Key.equals("doi")){Key = "DOI";metadataTable.put(Key, Map);}
-        if (Key.equals("author")) {
-
-            // Split authors here (Authors are separated like so:
-            //                     "John Doe and Marge Thatcher")  
-            String[] data7 = Map.split(" and ");
-
-            for (int i = 0; i < data7.length; i++) {
-                // Split authors once more. They are now only separated by " "
-                // We're using a List here so we're able to empty the array completely later
-                List<String> name = Arrays.asList(data7[i].split(" "));
-                if (name.size() > 2) {
-                    // Author has middle name/inital
-                    metadataTable.put("author"+authors+"_fname", name.get(0));
-                    metadataTable.put("author"+authors+"_mname", name.get(1));
-                    metadataTable.put("author"+authors+"_lname", name.get(2));
-                    authors++;
-                    // Empties array
-                    name = new ArrayList<>();
-                } else {
-                    // Author only has first and last name
-                    metadataTable.put("author"+authors+"_fname", name.get(0));
-                    metadataTable.put("author"+authors+"_lname", name.get(1));
-                    authors++;
-                    // Empties array
-                    name = new ArrayList<>();
+                if (Key.equals("title") || Key.equals("Title")) {
+                    metadataTable.put("Title", Map);
+                }
+                if(Key.equals("journal") || Key.equals("Journal") || Key.equals("booktitle") || Key.equals("Booktitle")) {
+                    metadataTable.put("source publication", Map);
+                }
+                if(Key.equals("year") || Key.equals("Year")) {
+                    metadataTable.put("publication_date", Map);
+                }
+                if(Key.equals("volume") || Key.equals("Volume")) {
+                    metadataTable.put("volnum", Map);
+                }
+                if (Key.equals("pages") || Key.equals("Pages")) {
+                    String[] data3 = Map.split("-");
+                    if (data3.length > 2) {
+                        metadataTable.put("First page", data3[0]);
+                        metadataTable.put("Last page", data3[2]);
+                    } else {
+                        metadataTable.put("First page", data3[0]);
+                        metadataTable.put("Last page", data3[1]);
+                    }
+                }
+                // add month
+                if(Key.equals("abstract") || Key.equals("Abstract")) {
+                    metadataTable.put("Abstract", Map);
+                }
+                if (Key.equals("keywords") || Key.equals("Keywords")) {
+                    if (Map.contains(";")) {
+                        Map = Map.replace(";", ", ");
+                        metadataTable.put("Keywords", Map);
+                    } else {
+                        metadataTable.put("Keywords", Map);
+                    }
+                }
+                if(Key.equals("doi") || Key.equals("DOI") || Key.equals("Doi")) {
+                    metadataTable.put("DOI", Map);
+                }
+                if(Key.equals("ISSN") || Key.equals("issn")) {
+                    metadataTable.put("ISSN", Map);
+                }
+                // Test print
+                for (int i = 0; i < data.length; i++) {
+                    System.out.println(i + ": " + data[i]);
                 }
             }
         }
-        if(Key.equals("keywords")){Key = "Keywords";metadataTable.put(Key, Map);}
-        if(Key.equals("abstract")){Key = "abstract";metadataTable.put(Key, Map);}
-        }
-
+        
     }
-    return metadataTable;
+    return null;
 }
 
 /* ### IEEExplore PARSER ### */
@@ -508,14 +847,14 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
         // Convert JsonArray to ArrayList<String>
         for (int k = 0; k < jsonArr.size(); k++) {
             authors.add((jsonArr.get(k)).toString());
-            System.out.println("Author " + (k+1) + ": " + authors.get(k));
+            //System.out.println("Author " + (k+1) + ": " + authors.get(k));
         }
 
         int i = 0;
         int j = 1;
         while (j != authors.size() + 1) {
             if (authors.get(i).contains(input.get("author" + j + "_lname"))) {
-                System.out.println("Found: " + (input.get("author"+ j +"_lname")));
+                //System.out.println("Found: " + (input.get("author"+ j +"_lname")));
                 if (authors.get(i).contains("affiliation")) {
                     String[] data = authors.get(i).split("\"affiliation\":\"");
                     String[] data2 = data[1].split("\",\"");
@@ -540,36 +879,34 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
 }
 
 public static HashMap<String, String> springerParser (HashMap<String, String> input, ArrayList<String> html) {
-	for(int i = 0; i < html.size(); i++) {
-		if(html.get(i).contains("\"citation_author\"")) {
-			int slice = 0;
-			String currentString = html.get(i);
-			slice = currentString.indexOf("content=\"") + 9;
-			String author[] = currentString.substring(slice, currentString.length() - 3).split(" ");
-			Vector<String> institutions = new Vector<String>();
-			String institution = "";
-			while(html.get(i + 1).contains("\"citation_author_institution\"")) { //Find institutions
-				i++;
-				currentString = html.get(i);
-				slice = currentString.indexOf("content=\"") + 9;
-				institutions.addElement(currentString.substring(slice, currentString.length() - 3));
-				
-			}
-			for(int k = 1; k < 10; k++) {
-				System.out.println(author[0] + " is compared with " + input.get("author" + k + "_fname") + " and " + author[1] + " is compared with " + input.get("author" + k + "_lname"));
-				if(author[0].equals(input.get("author" + k + "_fname")) && author[author.length - 1].equals(input.get("author" + k + "_lname"))) { //Find the author for the institution.
-					String formattedInstitutions = institutions.get(0);
-					for(int l = 1; l < institutions.size(); l++) {
-						formattedInstitutions += ", " + institutions.get(l);
-					}
-					input.put("author" + k + "_institution", formattedInstitutions);
-					break;
-				}
-			}
-
-		}
-	}
-	return null;
+    for (int i = 0; i < html.size(); i++) {
+        if (html.get(i).contains("\"citation_author\"")) {
+            int slice = 0;
+            String currentString = html.get(i);
+            slice = currentString.indexOf("content=\"") + 9;
+            String author[] = currentString.substring(slice, currentString.length() - 3).split(" ");
+            Vector<String> institutions = new Vector<String>();
+            String institution = "";
+            while(html.get(i + 1).contains("\"citation_author_institution\"")) { //Find institutions
+                i++;
+                currentString = html.get(i);
+                slice = currentString.indexOf("content=\"") + 9;
+                institutions.addElement(currentString.substring(slice, currentString.length() - 3));
+            }
+            for(int k = 1; k < 10; k++) {
+                System.out.println(author[0] + " is compared with " + input.get("author" + k + "_fname") + " and " + author[1] + " is compared with " + input.get("author" + k + "_lname"));
+                if(author[0].equals(input.get("author" + k + "_fname")) && author[author.length - 1].equals(input.get("author" + k + "_lname"))) { //Find the author for the institution.
+                    String formattedInstitutions = institutions.get(0);
+                    for(int l = 1; l < institutions.size(); l++) {
+                            formattedInstitutions += ", " + institutions.get(l);
+                    }
+                    input.put("author" + k + "_institution", formattedInstitutions);
+                    break;
+                }
+            }
+        }
+    }
+    return null;
 }
 
 public static void main(String[] args) throws IOException, Exception {
@@ -608,6 +945,11 @@ public static void main(String[] args) throws IOException, Exception {
     
     // Calls appropriate parsers
     for (File f: files) {
+        if (f.getName().startsWith("savedrecs") && f.getName().contains(".bib")) {
+            // This file is a bib file that contains multiple articles
+            metaTable = bibParser_multipleArticles(f.getPath(), csvFile, writer);
+            // Call specific bib parser that takes these kinds of files
+        }
         if (f.getName().contains(".ris")) {
             metaTable = risParser(f.getPath());
             if (metaTable.containsKey("URL")) {
@@ -617,12 +959,12 @@ public static void main(String[] args) throws IOException, Exception {
                 if (url.contains("doi.org")) {
                     url = getFinalURL(url);
                 }
-                if (url.contains("ieee")) {
+                if (url.contains("ieeexplore")) {
                     html = fetchHTML(url);
                     metaTable = ieeeParser(metaTable, html);
-                } else if (url.contains("asme")) {
+                } else if (url.contains("asme.org")) {
                     // Call asme parser
-                } else if (url.contains("springer")) {
+                } else if (url.contains("springer.org")) {
                     // Call springer parser
                 	html = fetchHTML(url);
                 	springerParser(metaTable, html);
@@ -634,15 +976,15 @@ public static void main(String[] args) throws IOException, Exception {
                 System.out.println("URL print test via DOI#: " + url);
                 // Checks which HTML parser is needed, if any
                 finalURL = getFinalURL(url);
-                if (finalURL.contains("ieee")) {
+                if (finalURL.contains("ieeexplore")) {
                     html = fetchHTML(finalURL);
                     metaTable = ieeeParser(metaTable, html);
-                } else if (finalURL.contains("asme")) {
+                } else if (finalURL.contains("asme.org")) {
                     // Call asme parser
-                } else if (finalURL.contains("springer")) {
+                } else if (finalURL.contains("springer.org")) {
                     // Call springer parser
-                	html = fetchHTML(finalURL);
-                	System.out.println("THIS HAPPENED");
+                    html = fetchHTML(finalURL);
+                    System.out.println("THIS HAPPENED");
                 } else {
                     System.out.println("This URL does not have a supported parser.");
                 }
@@ -652,7 +994,7 @@ public static void main(String[] args) throws IOException, Exception {
             populateCSV(metaTable, csvFile, writer);
             System.out.println(f.getName());
         }
-        if (f.getName().contains(".bib")) {
+        if (f.getName().contains(".bib") && !f.getName().startsWith("savedrecs")) {
             metaTable = bibParser(f.getPath());
             if (metaTable.containsKey("URL")) {
                 url = metaTable.get("URL");
@@ -708,7 +1050,7 @@ public static File CSVgen(PrintWriter writer) throws IOException { //This method
             System.out.println("FILE ALREADY EXISTS");
             throw new IOException("FILE ALREADY EXISTS");
 	}*/
-    writer.write("title,filename,source_fulltext_url,fulltext_url,version,copyright_statement,distribution_license,embargo_date,keywords,abstract,author1_fname,author1_mname,author1_lname,author1_suffix,author1_email,author1_institution,author1_is_corporate,author2_fname,author2_mname,author2_lname,author2_suffix,author2_email,author2_institution,author2_is_corporate,author3_fname,author3_mname,author3_lname,author3_suffix,author3_email,author3_institution,author3_is_corporate,author4_fname,author4_mname,author4_lname,author4_suffix,author4_email,author4_institution,author4_is_corporate,author5_fname,author5_mname,author5_lname,author5_suffix,author5_email,author5_institution,author5_is_corporate,author6_fname,author6_mname,author6_lname,author6_suffix,author6_email,author6_institution,author6_is_corporate,article_desc,disciplines,comments,create_openurl,custom_citation,document_type,doi,honors_pub,issn,volnum,issnum,source_publication,fpage,lpage,peer_reviewed,mcnair,orcid_id,publication_date,season\n");
+    writer.write("title,filename,source_fulltext_url,fulltext_url,version,copyright_statement,distribution_license,embargo_date,keywords,Abstract,author1_fname,author1_mname,author1_lname,author1_suffix,author1_email,author1_institution,author1_is_corporate,author2_fname,author2_mname,author2_lname,author2_suffix,author2_email,author2_institution,author2_is_corporate,author3_fname,author3_mname,author3_lname,author3_suffix,author3_email,author3_institution,author3_is_corporate,author4_fname,author4_mname,author4_lname,author4_suffix,author4_email,author4_institution,author4_is_corporate,author5_fname,author5_mname,author5_lname,author5_suffix,author5_email,author5_institution,author5_is_corporate,author6_fname,author6_mname,author6_lname,author6_suffix,author6_email,author6_institution,author6_is_corporate,article_desc,disciplines,comments,create_openurl,custom_citation,document_type,doi,honors_pub,issn,volnum,issnum,source_publication,fpage,lpage,peer_reviewed,mcnair,orcid_id,publication_date,season\n");
     return tempfile;
 }
 	
@@ -741,7 +1083,7 @@ public static void populateCSV(HashMap<String, String> input, File csvFile, Prin
     bigString = csvHelper(input, "Type", bigString);
     bigString = csvHelper(input, "DOI", bigString);
     bigString = csvHelper(input, "honors_pub", bigString);
-    bigString = csvHelper(input, "ISBN", bigString);
+    bigString = csvHelper(input, "ISSN", bigString);
     bigString = csvHelper(input, "volnum", bigString);
     bigString = csvHelper(input, "issnum", bigString);
     bigString = csvHelper(input, "source publication", bigString);
