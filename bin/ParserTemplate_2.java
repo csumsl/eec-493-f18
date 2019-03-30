@@ -188,30 +188,6 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
         }
 return metadataTable;
 }    
-    public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(System.in);
-        HashMap<String, String> metaTable = new HashMap<>();
-        System.out.println("What is the filename?");
-        
-        // Reads the file inputed by user
-        String input = in.nextLine();
-        
-        /*      --- Example ---
-            "What is the filename?"
-            ThermalFluids_Article.ris
-        */
-        
-        // Calls parser function
-        
-        metaTable = risParser(input);
-        Set set = metaTable.entrySet();
-        Iterator iterator = set.iterator();
-        while(iterator.hasNext()){
-            Map.Entry mapEntry = (Map.Entry)iterator.next();
-            System.out.println("the Key is " + mapEntry.getKey() + " and the Value is " + mapEntry.getValue());
-        }
-        System.out.println(input + " has been parsed.");
-    }
 
 /* ### .BIB PARSER ### */
 public static HashMap<String, String> bibParser (String path) throws FileNotFoundException, IOException {
