@@ -55,6 +55,61 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
         String Map = "";
         int authors = 1;
         int temp = 0;
+        HashMap<String, String> TypeMap = new HashMap<>();
+        TypeMap.put("ABST", "abstract");
+        TypeMap.put("ADVS", "audiovisual material");
+        TypeMap.put("AGGR", "aggregated database");
+        TypeMap.put("ANCIENT", "ancient text");
+        TypeMap.put("ART", "art work");
+        TypeMap.put("BILL", "bill");
+        TypeMap.put("BLOG", "blog");
+        TypeMap.put("BOOK", "whole book");
+        TypeMap.put("CASE", "case");
+        TypeMap.put("CHAP", "book chapter");
+        TypeMap.put("CHART", "chart");
+        TypeMap.put("CLSWK", "classical work");
+        TypeMap.put("COMP", "computer program");
+        TypeMap.put("CONF", "conference proceeding");
+        TypeMap.put("CPAPER", "conference paper");
+        TypeMap.put("CTLG", "catalog");
+        TypeMap.put("DATA", "data file");
+        TypeMap.put("DBASE", "online database");
+        TypeMap.put("DICT", "dictionary");
+        TypeMap.put("EBOOK", "electronic book");
+        TypeMap.put("ECHAP", "electionic book section");
+        TypeMap.put("EDBOOK", "edited book");
+        TypeMap.put("EJOUR", "electronic article");
+        TypeMap.put("ELEC", "web page");
+        TypeMap.put("ENCYC", "encyclopedia");
+        TypeMap.put("EQUA", "equation");
+        TypeMap.put("FIGURE", "figure");
+        TypeMap.put("GEN", "generic");
+        TypeMap.put("GOVDOC", "government document");
+        TypeMap.put("GRANT", "grant");
+        TypeMap.put("HEAR", "hearing");
+        TypeMap.put("ICOMM", "internet communication");
+        TypeMap.put("INPR", "in press");
+        TypeMap.put("JOUR", "journal");
+        TypeMap.put("LEGAL", "legal rule or regulation");
+        TypeMap.put("MANSCPT", "manuscript");
+        TypeMap.put("MAP", "map");
+        TypeMap.put("MGZN", "magazine article");
+        TypeMap.put("MPCT", "motion picture");
+        TypeMap.put("MULTI", "online multimedia");
+        TypeMap.put("MUSIC", "music score");
+        TypeMap.put("NEWS", "newspaper");
+        TypeMap.put("PAMP", "pamphlet");
+        TypeMap.put("PAT", "patent");
+        TypeMap.put("PCOMM", "personal communication");
+        TypeMap.put("RPRT", "report");
+        TypeMap.put("SER", "serial publication");
+        TypeMap.put("SLIDE", "slide");
+        TypeMap.put("SOUND", "sound recording");
+        TypeMap.put("STAND", "standart");
+        TypeMap.put("STAT", "statute");
+        TypeMap.put("THES", "thesis/dissertation");
+        TypeMap.put("UNPB", "unpublished work");
+        TypeMap.put("VIDEO", "video recording");
         
         // Loops continues until it reaches the end of the file
         while((line = br.readLine()) != null) {
@@ -68,175 +123,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                Map = Map + " " + data[i];
             }
             if(Key.equals("TY")){
-                Key = "Type";
-                if(data[3].equals("ABST")){
-                    metadataTable.put(Key, "abstract");
-                }
-                if(data[3].equals("ADVS")){
-                    metadataTable.put(Key, "audiovisual material");
-                }
-                if(data[3].equals("AGGR")){
-                    metadataTable.put(Key, "aggregated database");
-                }
-                if(data[3].equals("ANCIENT")){
-                    metadataTable.put(Key, "ancient text");
-                }
-                if(data[3].equals("ART")){
-                    metadataTable.put(Key, "art work");
-                }
-                if(data[3].equals("BILL")){
-                    metadataTable.put(Key, "bill");
-                }
-                if(data[3].equals("BLOG")){
-                    metadataTable.put(Key, "BLOG");
-                }
-                if(data[3].equals("BOOK")){
-                    metadataTable.put(Key, "whole book");
-                }
-                if(data[3].equals("CASE")){
-                    metadataTable.put(Key, "case");
-                }
-                if(data[3].equals("CHAP")){
-                    metadataTable.put(Key, "book chapter");
-                }
-                if(data[3].equals("CHART")){
-                    metadataTable.put(Key, "chart");
-                }
-                if(data[3].equals("CLSWK")){
-                    metadataTable.put(Key, "classical work");
-                }
-                if(data[3].equals("COMP")){
-                    metadataTable.put(Key, "computer program");
-                }
-                if(data[3].equals("CONF")){
-                    metadataTable.put(Key, "conference proceeding");
-                }
-                if(data[3].equals("CPAPER")){
-                    metadataTable.put(Key, "conference paper");
-                }
-                if(data[3].equals("CTLG")){
-                    metadataTable.put(Key, "catalog");
-                }
-                if(data[3].equals("DATA")){
-                    metadataTable.put(Key, "data file");
-                }
-                if(data[3].equals("DBASE")){
-                    metadataTable.put(Key, "online database");
-                }
-                if(data[3].equals("DICT")){
-                    metadataTable.put(Key, "dictionary");
-                }
-                if(data[3].equals("EBOOK")){
-                    metadataTable.put(Key, "electronic book");
-                }
-                if(data[3].equals("ECHAP")){
-                    metadataTable.put(Key, "electronic book section");
-                }
-                if(data[3].equals("EDBOOK")){
-                    metadataTable.put(Key, "edited book");
-                }
-                if(data[3].equals("EJOUR")){
-                    metadataTable.put(Key, "electronic article");
-                }
-                if(data[3].equals("ELEC")){
-                    metadataTable.put(Key, "web page");
-                }
-                if(data[3].equals("ENCYC")){
-                    metadataTable.put(Key, "encyclopedia");
-                }
-                if(data[3].equals("EQUA")){
-                    metadataTable.put(Key, "equation");
-                }
-                if(data[3].equals("FIGURE")){
-                    metadataTable.put(Key, "figure");
-                }
-                if(data[3].equals("GEN")){
-                    metadataTable.put(Key, "generic");
-                }
-                if(data[3].equals("GOVDOC")){
-                    metadataTable.put(Key, "government document");
-                }
-                if(data[3].equals("GRANT")){
-                    metadataTable.put(Key, "grant");
-                }
-                if(data[3].equals("HEAR")){
-                    metadataTable.put(Key, "hearing");
-                }
-                if(data[3].equals("ICOMM")){
-                    metadataTable.put(Key, "internet communication");
-                }
-                if(data[3].equals("INPR")){
-                    metadataTable.put(Key, "in press");
-                }
-                if(data[3].equals("INPR")){
-                    metadataTable.put(Key, "in press");
-                }
-                if(data[3].equals("JFULL")){
-                    metadataTable.put(Key, "journal (full)");
-                }
-                if(data[3].equals("JOUR")){
-                    metadataTable.put(Key, "journal");
-                }
-                if(data[3].equals("LEGAL")){
-                    metadataTable.put(Key, "legal rule or regulation");
-                }
-                if(data[3].equals("MANSCPT")){
-                    metadataTable.put(Key, "manuscript");
-                }
-                if(data[3].equals("MAP")){
-                    metadataTable.put(Key, "map");
-                }
-                if(data[3].equals("MGZN")){
-                    metadataTable.put(Key, "magazine article");
-                }
-                if(data[3].equals("MPCT")){
-                    metadataTable.put(Key, "motion picture");
-                }
-                if(data[3].equals("MULTI")){
-                    metadataTable.put(Key, "online multimedia");
-                }
-                if(data[3].equals("MUSIC")){
-                    metadataTable.put(Key, "music score");
-                }
-                if(data[3].equals("NEWS")){
-                    metadataTable.put(Key, "newspaperer");
-                }
-                if(data[3].equals("PAMP")){
-                    metadataTable.put(Key, "pamphlet");
-                }
-                if(data[3].equals("PAT")){
-                    metadataTable.put(Key, "patent");
-                }
-                if(data[3].equals("PCOMM")){
-                    metadataTable.put(Key, "personal communication");
-                }
-                if(data[3].equals("RPRT")){
-                    metadataTable.put(Key, "report");
-                }
-                if(data[3].equals("SER")){
-                    metadataTable.put(Key, "serial publication");
-                }
-                if(data[3].equals("SLIDE")){
-                    metadataTable.put(Key, "slide");
-                }
-                if(data[3].equals("SOUND")){
-                    metadataTable.put(Key, "sound recording");
-                }
-                if(data[3].equals("STAND")){
-                    metadataTable.put(Key, "standard");
-                }
-                if(data[3].equals("STAT")){
-                    metadataTable.put(Key, "statute");
-                }
-                if(data[3].equals("THES")){
-                    metadataTable.put(Key, "thesis/dissertation");
-                }
-                if(data[3].equals("UNPB")){
-                    metadataTable.put(Key, "unpublished work");
-                }
-                if(data[3].equals("VIDEO")){
-                    metadataTable.put(Key, "video recording");
-                }
+                metadataTable.put("Type", TypeMap.get(data[3]));
             }
             if(Key.equals("AU")) {
                 String[] name = Map.split(" ");
@@ -300,7 +187,31 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
             Map = "";   
         }
 return metadataTable;
-}
+}    
+    public static void main(String[] args) throws IOException {
+        Scanner in = new Scanner(System.in);
+        HashMap<String, String> metaTable = new HashMap<>();
+        System.out.println("What is the filename?");
+        
+        // Reads the file inputed by user
+        String input = in.nextLine();
+        
+        /*      --- Example ---
+            "What is the filename?"
+            ThermalFluids_Article.ris
+        */
+        
+        // Calls parser function
+        
+        metaTable = risParser(input);
+        Set set = metaTable.entrySet();
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()){
+            Map.Entry mapEntry = (Map.Entry)iterator.next();
+            System.out.println("the Key is " + mapEntry.getKey() + " and the Value is " + mapEntry.getValue());
+        }
+        System.out.println(input + " has been parsed.");
+    }
 
 /* ### .BIB PARSER ### */
 public static HashMap<String, String> bibParser (String path) throws FileNotFoundException, IOException {
