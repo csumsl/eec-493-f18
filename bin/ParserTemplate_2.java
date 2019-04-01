@@ -22,29 +22,20 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
+// Gson imports
 import com.google.gson.*;
+
+// Jsoup imports
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 
 public class ParserTemplate {
     
 /* ### .RIS PARSER ### */
 public static HashMap<String, String> risParser (String path) throws FileNotFoundException, IOException {
-/* 
-    metadataTable contains a key and value respecfully
-    The key will be the name of the metadata we need such as:
-        (In this order according the the metadata sheet)
-        - Title
-        - Keywords
-        - DOI
-        - Absract
-        - Publication
-        - Volume Number
-        - Issue Number
-        - First Page
-        - Last Page
-        - Publication Date
-    
-    The value is the data we're parsing
-*/
+
     HashMap<String, String> metadataTable = new HashMap<>();
         
         BufferedReader br = new BufferedReader(new FileReader(path));
@@ -130,6 +121,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                 if(name.length == 1) {
                     metadataTable.put("author"+authors+"_lname", name[0]);
                     authors++;
+                    maxAuth = authors;
                 }
                 if(name.length == 2) {
                     if((name[0].charAt(name[0].length()-1))==(',')) {
@@ -137,10 +129,12 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_lname", name[0]);
                         metadataTable.put("author"+authors+"_fname", name[1]);
                         authors++;
+                        maxAuth = authors;
                     } else {
                         metadataTable.put("author"+authors+"_fname", name[0]);
                         metadataTable.put("author"+authors+"_lname", name[1]);
                         authors++;
+                        maxAuth = authors;
                     }
                 }
                 if(name.length > 2) {
@@ -158,6 +152,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_lname", name[name.length - 1]);
                     }
                     authors++;
+                    maxAuth = authors;
                     }
                 }
             }
@@ -239,6 +234,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_mname", name.get(3));
                         metadataTable.put("author"+authors+"_fname", name.get(2));
                         authors++;
+                        maxAuth = authors;
                         // Empties array
                         name = new ArrayList<>();
                     } else {
@@ -246,6 +242,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_lname", name.get(0));
                         metadataTable.put("author"+authors+"_fname", name.get(2));
                         authors++;
+                        maxAuth = authors;
                         // Empties array
                         name = new ArrayList<>();
                     }
@@ -266,6 +263,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                                 metadataTable.put("author"+authors+"_mname", name.get(3));
                                 metadataTable.put("author"+authors+"_fname", name.get(2));
                                 authors++;
+                                maxAuth = authors;
                                 // Empties array
                                 name = new ArrayList<>();
                             } else {
@@ -273,6 +271,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                                 metadataTable.put("author"+authors+"_lname", name.get(0));
                                 metadataTable.put("author"+authors+"_fname", name.get(2));
                                 authors++;
+                                maxAuth = authors;
                                 // Empties array
                                 name = new ArrayList<>();
                             }
@@ -285,6 +284,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                                 metadataTable.put("author"+authors+"_mname", name.get(1));
                                 metadataTable.put("author"+authors+"_lname", name.get(2));
                                 authors++;
+                                maxAuth = authors;
                                 // Empties array
                                 name = new ArrayList<>();
                             } else {
@@ -292,6 +292,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                                 metadataTable.put("author"+authors+"_fname", name.get(0));
                                 metadataTable.put("author"+authors+"_lname", name.get(1));
                                 authors++;
+                                maxAuth = authors;
                                 // Empties array
                                 name = new ArrayList<>();
                             }
@@ -374,6 +375,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_mname", name.get(1));
                         metadataTable.put("author"+authors+"_lname", name.get(2));
                         authors++;
+                        maxAuth = authors;
                         // Empties array
                         name = new ArrayList<>();
                     } else {
@@ -381,6 +383,7 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_fname", name.get(0));
                         metadataTable.put("author"+authors+"_lname", name.get(1));
                         authors++;
+                        maxAuth = authors;
                         // Empties array
                         name = new ArrayList<>();
                     }
@@ -475,6 +478,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                             metadataTable.put("author"+authors+"_mname", name.get(3));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
                             authors++;
+                            maxAuth = authors;
                             // Empties array
                             name = new ArrayList<>();
                         } else {
@@ -482,6 +486,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
                             authors++;
+                            maxAuth = authors;
                             // Empties array
                             name = new ArrayList<>();
                         }
@@ -502,6 +507,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_mname", name.get(3));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
@@ -509,6 +515,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_lname", name.get(0));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -521,6 +528,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_mname", name.get(1));
                                     metadataTable.put("author"+authors+"_lname", name.get(2));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
@@ -528,6 +536,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_fname", name.get(0));
                                     metadataTable.put("author"+authors+"_lname", name.get(1));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -619,6 +628,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                             metadataTable.put("author"+authors+"_mname", name.get(3));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
                             authors++;
+                            maxAuth = authors;
                             // Empties array
                             name = new ArrayList<>();
                         } else {
@@ -626,6 +636,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
                             authors++;
+                            maxAuth = authors;
                             // Empties array
                             name = new ArrayList<>();
                         }
@@ -646,6 +657,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_mname", name.get(3));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
@@ -653,6 +665,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_lname", name.get(0));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -665,6 +678,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_mname", name.get(1));
                                     metadataTable.put("author"+authors+"_lname", name.get(2));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
@@ -672,6 +686,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_fname", name.get(0));
                                     metadataTable.put("author"+authors+"_lname", name.get(1));
                                     authors++;
+                                    maxAuth = authors;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -748,6 +763,9 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
     }
     return null;
 }
+
+/* ### Maximum authors in an article (Used for the asme.org parser) ###*/
+public static int maxAuth;
 
 /* ### IEEExplore PARSER ### */
 public static HashMap<String, String> ieeeParser (HashMap<String, String> input, ArrayList<String> html) {
@@ -841,6 +859,90 @@ public static HashMap<String, String> springerParser (HashMap<String, String> in
     return null;
 }
 
+public static HashMap<String, String> asmeParser (HashMap<String, String> input, String url) throws IOException {
+    
+    // citationInfo will hold all the acquired affiliations from the html
+    ArrayList<String> citationInfo = new ArrayList<String>();
+    Document doc;
+    doc = Jsoup.connect(url).get();
+    
+    // Get all meta tags
+    Elements meta = doc.select("meta");
+    // metaTags holds all the metaTags in the website's HTML code
+    String[] metaTags = new String[meta.size()];
+    for (int i = 0; i < meta.size(); i++) {
+        metaTags[i] = meta.get(i).toString();
+    }
+
+    int j = 0;
+    for (Element metaTag : meta) {
+        // For every meta tag that has the value "name", put the "name" value into citationInfo arraylist
+        citationInfo.add(j, (metaTag.attr("name")));
+        j++;
+        // For every meta tag that has "content", put the "content" value into citationInfo arraylist
+        citationInfo.add(j, (metaTag.attr("content")));
+        j++;
+    }
+
+    for (int i = 0; i < citationInfo.size(); i++) {
+        // Test print of new arraylist
+        System.out.println("citationInfo index " + i + ": " + citationInfo.get(i));
+    }
+
+    int authors = 1;
+    int i = 0;
+    int maxCheck = 0;
+    while (authors < maxAuth + 1) {
+        if (citationInfo.get(i).contains(input.get("author" + authors + "_lname"))){
+            i++;
+            if (citationInfo.get(i).equals("citation_author_email")) {
+                i++;
+                input.put("author" + authors + "_email",citationInfo.get(i));
+                // Test print to show what author was just recognized:
+                System.out.println("Author: " + input.get("author" + authors + "_fname") + " " + input.get("author" + authors + "_lname"));
+                System.out.println("***Entered author email in metaTable***");
+                i++;
+                if (citationInfo.get(i).equals("citation_author_institution")) {
+                    i++;
+                    input.put("author" + authors + "_institution",citationInfo.get(i));
+                    System.out.println("***Entered author institution in metaTable***");
+                    authors++;
+                }
+            } else if (citationInfo.get(i).equals("citation_author_institution")) {
+                i++;
+                // Test print to show what author was just recognized:
+                System.out.println("Author: " + input.get("author" + authors + "_fname") + " " + input.get("author" + authors + "_lname"));
+                input.put("author" + authors + "_institution",citationInfo.get(i));
+                System.out.println("***Entered author institution in metaTable***");
+                i++;
+                if (citationInfo.get(i).equals("citation_author_email")) {
+                    i++;
+                    input.put("author" + authors + "_email",citationInfo.get(i));
+                    System.out.println("***Entered author email in metaTable***");
+                    authors++;
+                }
+            }
+        }
+        i++;
+        /* 
+           This check is incase the authors in the metaTable/citationInfo 
+           are presented in a different order
+        */
+        if (i == citationInfo.size()) {
+            // Restart search
+            i = 0;
+            maxCheck++;
+            /* 
+                This if statement is neccessary incase citationInfo 
+                is missing one the authors in the metaTable
+            */
+            if (maxCheck == maxAuth + 1)
+                break;
+        }
+    }
+    return input;
+}
+
 public static void main(String[] args) throws IOException, Exception {
     
     HashMap<String, String> metaTable = new HashMap<>();
@@ -896,6 +998,7 @@ public static void main(String[] args) throws IOException, Exception {
                     metaTable = ieeeParser(metaTable, html);
                 } else if (url.contains("asme.org")) {
                     // Call asme parser
+                    //metaTable = asmeParser(metaTable, url);
                 } else if (url.contains("springer.org")) {
                     // Call springer parser
                 	html = fetchHTML(url);
@@ -913,10 +1016,11 @@ public static void main(String[] args) throws IOException, Exception {
                     metaTable = ieeeParser(metaTable, html);
                 } else if (finalURL.contains("asme.org")) {
                     // Call asme parser
+                    //metaTable = asmeParser(metaTable, url);
                 } else if (finalURL.contains("springer.org")) {
                     // Call springer parser
                     html = fetchHTML(finalURL);
-                    System.out.println("THIS HAPPENED");
+                    springerParser(metaTable, html);
                 } else {
                     System.out.println("This URL does not have a supported parser.");
                 }
@@ -935,11 +1039,13 @@ public static void main(String[] args) throws IOException, Exception {
                 if (url.contains("doi.org")) {
                     url = getFinalURL(url);
                 }
-                if (url.contains("ieee")) {
+                if (url.contains("ieeexplore")) {
+                    // Call ieee parser
                     html = fetchHTML(url);
                     metaTable = ieeeParser(metaTable, html);
                 } else if (url.contains("asme")) {
                     // Call asme parser
+                    metaTable = asmeParser(metaTable, url);
                 } else if (url.contains("springer")) {
                     html = fetchHTML(url);
                     metaTable = springerParser(metaTable, html);
