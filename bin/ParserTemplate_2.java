@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 
+import javax.swing.filechooser.FileSystemView;
+
 // Gson imports
 import com.google.gson.*;
 
@@ -31,7 +33,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
-public class ParserTemplate {
+public class ParserTemplate_2 {
     
 /* ### .RIS PARSER ### */
 public static HashMap<String, String> risParser (String path) throws FileNotFoundException, IOException {
@@ -966,9 +968,21 @@ public static void main(String[] args) throws IOException, Exception {
     input = chooser.getSelectedFile().toString();
     
     // Opens selected file and calls respective parser
+    
+    chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+    chooser.setDialogTitle("Save the output spreadsheet.");
+    chooser.setCurrentDirectory(new File(System.getProperty("user.home") + System.getProperty("file.separator")+ "Documents"));
+    int returnValue = chooser.showSaveDialog(null);
+    String outputDirectory = "tempfile.csv";
+    
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+    	outputDirectory = chooser.getSelectedFile().getAbsolutePath();
+		System.out.println(outputDirectory);
+	}
+    
     File file = new File(input);
     File[] files = file.listFiles();
-    PrintWriter writer = new PrintWriter("tempfile.csv", "UTF-8");
+    PrintWriter writer = new PrintWriter(outputDirectory + ".csv", "UTF-8");
     File csvFile = CSVgen(writer);
     
     // HTML Source code variables
