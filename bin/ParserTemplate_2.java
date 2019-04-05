@@ -178,6 +178,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
             if(Key.equals("VL")){Key = "volnum";metadataTable.put(Key, Map);}
             if(Key.equals("IS")){Key = "issnum";metadataTable.put(Key, Map);}
             if(Key.equals("AB")){Key = "Abstract";metadataTable.put(Key, Map);}
+	    if(Key.equals("N2")){Key = "Abstract";metadataTable.put(Key, Map);}
             if(Key.equals("SN")){Key = "ISBN";metadataTable.put(Key, Map);}
             if(Key.equals("UR")){Key = "URL";metadataTable.put(Key, Map);}
             if(Key.equals("N1")){Key = "DOI";metadataTable.put(Key, Map);}
