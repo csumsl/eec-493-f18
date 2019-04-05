@@ -178,7 +178,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
             if(Key.equals("VL")){Key = "volnum";metadataTable.put(Key, Map);}
             if(Key.equals("IS")){Key = "issnum";metadataTable.put(Key, Map);}
             if(Key.equals("AB")){Key = "Abstract";metadataTable.put(Key, Map);}
-	    if(Key.equals("N2")){Key = "Abstract";metadataTable.put(Key, Map);}
+            if(Key.equals("N2")){Key = "Abstract";metadataTable.put(Key, Map);}
             if(Key.equals("SN")){Key = "ISBN";metadataTable.put(Key, Map);}
             if(Key.equals("UR")){Key = "URL";metadataTable.put(Key, Map);}
             if(Key.equals("N1")){Key = "DOI";metadataTable.put(Key, Map);}
@@ -1018,7 +1018,7 @@ public static void main(String[] args) throws IOException, Exception {
                 } else if (url.contains("asme.org")) {
                     // Call asme parser
                     metaTable = asmeParser(metaTable, url);
-                } else if (url.contains("springer.org")) {
+                } else if (url.contains("springer.com")) {
                     // Call springer parser
                     html = fetchHTML(url);
                     springerParser(metaTable, html);
@@ -1036,7 +1036,7 @@ public static void main(String[] args) throws IOException, Exception {
                 } else if (finalURL.contains("asme.org")) {
                     // Call asme parser
                     metaTable = asmeParser(metaTable, url);
-                } else if (finalURL.contains("springer.org")) {
+                } else if (finalURL.contains("springer.com")) {
                     // Call springer parser
                     html = fetchHTML(finalURL);
                     springerParser(metaTable, html);
