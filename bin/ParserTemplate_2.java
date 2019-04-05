@@ -33,7 +33,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
-public class ParserTemplate_2 {
+public class ParserTemplate {
     
 /* ### .RIS PARSER ### */
 public static HashMap<String, String> risParser (String path) throws FileNotFoundException, IOException {
@@ -122,21 +122,21 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                 String[] name = Map.split(" ");
                 if(name.length == 1) {
                     metadataTable.put("author"+authors+"_lname", name[0]);
-                    authors++;
                     maxAuth = authors;
+                    authors++;
                 }
                 if(name.length == 2) {
                     if((name[0].charAt(name[0].length()-1))==(',')) {
                         name[0] =  name[0].replace(",","");
                         metadataTable.put("author"+authors+"_lname", name[0]);
                         metadataTable.put("author"+authors+"_fname", name[1]);
-                        authors++;
                         maxAuth = authors;
+                        authors++;
                     } else {
                         metadataTable.put("author"+authors+"_fname", name[0]);
                         metadataTable.put("author"+authors+"_lname", name[1]);
-                        authors++;
                         maxAuth = authors;
+                        authors++;
                     }
                 }
                 if(name.length > 2) {
@@ -153,12 +153,13 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
                     } else {
                         metadataTable.put("author"+authors+"_lname", name[name.length - 1]);
                     }
-                    authors++;
                     maxAuth = authors;
+                    authors++;
                     }
                 }
             }
             if(Key.equals("PY")){Key = "publication_date";metadataTable.put(Key, Map);}
+            if(Key.equals("Y1")){Key = "publication_date";metadataTable.put(Key, Map);}
             if(Key.equals("KW")){
                 Key = "Keywords";
                 if (temp == 0) {
@@ -170,6 +171,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
             }
             if(Key.equals("DA")){Key = "date";metadataTable.put(Key, Map);}
             if(Key.equals("TI")){Key = "Title";metadataTable.put(Key, Map);}
+            if(Key.equals("T1")){Key = "Title";metadataTable.put(Key, Map);}
             if(Key.equals("JO")){Key = "source publication";metadataTable.put(Key, Map);}
             if(Key.equals("SP")){Key = "First page";metadataTable.put(Key, Map);}
             if(Key.equals("EP")){Key = "Last page";metadataTable.put(Key, Map);}
@@ -178,6 +180,7 @@ public static HashMap<String, String> risParser (String path) throws FileNotFoun
             if(Key.equals("AB")){Key = "Abstract";metadataTable.put(Key, Map);}
             if(Key.equals("SN")){Key = "ISBN";metadataTable.put(Key, Map);}
             if(Key.equals("UR")){Key = "URL";metadataTable.put(Key, Map);}
+            if(Key.equals("N1")){Key = "DOI";metadataTable.put(Key, Map);}
             if(Key.equals("DO")){Key = "DOI";metadataTable.put(Key, Map);}
             if(Key.equals("ID")){Key = "Reference ID";metadataTable.put(Key, Map);}
             if(Key.equals("ER")){break;}
@@ -235,16 +238,16 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_lname", name.get(0));
                         metadataTable.put("author"+authors+"_mname", name.get(3));
                         metadataTable.put("author"+authors+"_fname", name.get(2));
-                        authors++;
                         maxAuth = authors;
+                        authors++;
                         // Empties array
                         name = new ArrayList<>();
                     } else {
                         // Author only has first and last name
                         metadataTable.put("author"+authors+"_lname", name.get(0));
                         metadataTable.put("author"+authors+"_fname", name.get(2));
-                        authors++;
                         maxAuth = authors;
+                        authors++;
                         // Empties array
                         name = new ArrayList<>();
                     }
@@ -264,8 +267,8 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                                 metadataTable.put("author"+authors+"_lname", name.get(0));
                                 metadataTable.put("author"+authors+"_mname", name.get(3));
                                 metadataTable.put("author"+authors+"_fname", name.get(2));
-                                authors++;
                                 maxAuth = authors;
+                                authors++;
                                 // Empties array
                                 name = new ArrayList<>();
                             } else {
@@ -285,16 +288,16 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                                 metadataTable.put("author"+authors+"_fname", name.get(0));
                                 metadataTable.put("author"+authors+"_mname", name.get(1));
                                 metadataTable.put("author"+authors+"_lname", name.get(2));
-                                authors++;
                                 maxAuth = authors;
+                                authors++;
                                 // Empties array
                                 name = new ArrayList<>();
                             } else {
                                 // Author only has first and last name
                                 metadataTable.put("author"+authors+"_fname", name.get(0));
                                 metadataTable.put("author"+authors+"_lname", name.get(1));
-                                authors++;
                                 maxAuth = authors;
+                                authors++;
                                 // Empties array
                                 name = new ArrayList<>();
                             }
@@ -376,16 +379,16 @@ public static HashMap<String, String> bibParser (String path) throws FileNotFoun
                         metadataTable.put("author"+authors+"_fname", name.get(0));
                         metadataTable.put("author"+authors+"_mname", name.get(1));
                         metadataTable.put("author"+authors+"_lname", name.get(2));
-                        authors++;
                         maxAuth = authors;
+                        authors++;
                         // Empties array
                         name = new ArrayList<>();
                     } else {
                         // Author only has first and last name
                         metadataTable.put("author"+authors+"_fname", name.get(0));
                         metadataTable.put("author"+authors+"_lname", name.get(1));
-                        authors++;
                         maxAuth = authors;
+                        authors++;
                         // Empties array
                         name = new ArrayList<>();
                     }
@@ -479,16 +482,16 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_mname", name.get(3));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
-                            authors++;
                             maxAuth = authors;
+                            authors++;
                             // Empties array
                             name = new ArrayList<>();
                         } else {
                             // Author only has first and last name
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
-                            authors++;
                             maxAuth = authors;
+                            authors++;
                             // Empties array
                             name = new ArrayList<>();
                         }
@@ -508,16 +511,16 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_lname", name.get(0));
                                     metadataTable.put("author"+authors+"_mname", name.get(3));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
                                     // Author only has first and last name
                                     metadataTable.put("author"+authors+"_lname", name.get(0));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -529,16 +532,16 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_fname", name.get(0));
                                     metadataTable.put("author"+authors+"_mname", name.get(1));
                                     metadataTable.put("author"+authors+"_lname", name.get(2));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
                                     // Author only has first and last name
                                     metadataTable.put("author"+authors+"_fname", name.get(0));
                                     metadataTable.put("author"+authors+"_lname", name.get(1));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -629,16 +632,16 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_mname", name.get(3));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
-                            authors++;
                             maxAuth = authors;
+                            authors++;
                             // Empties array
                             name = new ArrayList<>();
                         } else {
                             // Author only has first and last name
                             metadataTable.put("author"+authors+"_lname", name.get(0));
                             metadataTable.put("author"+authors+"_fname", name.get(2));
-                            authors++;
                             maxAuth = authors;
+                            authors++;
                             // Empties array
                             name = new ArrayList<>();
                         }
@@ -658,16 +661,16 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_lname", name.get(0));
                                     metadataTable.put("author"+authors+"_mname", name.get(3));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
                                     // Author only has first and last name
                                     metadataTable.put("author"+authors+"_lname", name.get(0));
                                     metadataTable.put("author"+authors+"_fname", name.get(2));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -679,16 +682,16 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                                     metadataTable.put("author"+authors+"_fname", name.get(0));
                                     metadataTable.put("author"+authors+"_mname", name.get(1));
                                     metadataTable.put("author"+authors+"_lname", name.get(2));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 } else {
                                     // Author only has first and last name
                                     metadataTable.put("author"+authors+"_fname", name.get(0));
                                     metadataTable.put("author"+authors+"_lname", name.get(1));
-                                    authors++;
                                     maxAuth = authors;
+                                    authors++;
                                     // Empties array
                                     name = new ArrayList<>();
                                 }
@@ -923,6 +926,7 @@ public static HashMap<String, String> asmeParser (HashMap<String, String> input,
                     System.out.println("***Entered author email in metaTable***");
                     authors++;
                 }
+                authors++;
             }
         }
         i++;
@@ -1012,11 +1016,11 @@ public static void main(String[] args) throws IOException, Exception {
                     metaTable = ieeeParser(metaTable, html);
                 } else if (url.contains("asme.org")) {
                     // Call asme parser
-                    //metaTable = asmeParser(metaTable, url);
+                    metaTable = asmeParser(metaTable, url);
                 } else if (url.contains("springer.org")) {
                     // Call springer parser
-                	html = fetchHTML(url);
-                	springerParser(metaTable, html);
+                    html = fetchHTML(url);
+                    springerParser(metaTable, html);
                 } else {
                     System.out.println("This URL does not have a supported parser.");
                 }
@@ -1030,7 +1034,7 @@ public static void main(String[] args) throws IOException, Exception {
                     metaTable = ieeeParser(metaTable, html);
                 } else if (finalURL.contains("asme.org")) {
                     // Call asme parser
-                    //metaTable = asmeParser(metaTable, url);
+                    metaTable = asmeParser(metaTable, url);
                 } else if (finalURL.contains("springer.org")) {
                     // Call springer parser
                     html = fetchHTML(finalURL);
@@ -1077,6 +1081,7 @@ public static void main(String[] args) throws IOException, Exception {
                     metaTable = ieeeParser(metaTable, html);
                 } else if (finalURL.contains("asme")) {
                     // Call asme parser
+                    metaTable = asmeParser(metaTable, url);
                 } else if (finalURL.contains("springer")) {
                     // Call springer parser
                     html = fetchHTML(finalURL);
@@ -1160,6 +1165,9 @@ public static String csvHelper(HashMap<String, String> input, String check, Stri
 
 /* ### HTML Source code methods ### */
 public static String getFinalURL(String url) throws IOException {
+    if (url.contains("asme.org")) {
+        return url;
+    }
     HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
     con.setInstanceFollowRedirects(false);
     con.connect();
@@ -1177,6 +1185,7 @@ public static String getFinalURL(String url) throws IOException {
         String redirectUrl = con.getHeaderField("Location");
         return getFinalURL(redirectUrl);
     }
+    System.out.println("URL TEST 7: " + url);
     return url;
 }
     
