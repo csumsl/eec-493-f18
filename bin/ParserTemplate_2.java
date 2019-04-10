@@ -862,7 +862,7 @@ public static HashMap<String, String> springerParser (HashMap<String, String> in
             }
         }
     }
-    return null;
+    return input;
 }
 
 public static HashMap<String, String> asmeParser (HashMap<String, String> input, String url) throws IOException {
@@ -1005,97 +1005,55 @@ public static void main(String[] args) throws IOException, Exception {
         }
         if (f.getName().contains(".ris")) {
             metaTable = risParser(f.getPath());
-            if (metaTable.containsKey("URL")) {
-                url = metaTable.get("URL");
-                System.out.println("URL print test via URL: " + url);
-                // Checks which HTML parser is needed if any
-                if (url.contains("doi.org")) {
-                    url = getFinalURL(url);
-                }
-                if (url.contains("ieeexplore")) {
-                    html = fetchHTML(url);
-                    metaTable = ieeeParser(metaTable, html);
-                } else if (url.contains("asme.org")) {
-                    // Call asme parser
-                    metaTable = asmeParser(metaTable, url);
-                } else if (url.contains("springer.com")) {
-                    // Call springer parser
-                    html = fetchHTML(url);
-                    springerParser(metaTable, html);
-                } else {
-                    System.out.println("This URL does not have a supported parser.");
-                }
-            } else if (metaTable.containsKey("DOI")) {
-                url = doiURLstart + metaTable.get("DOI");
-                System.out.println("URL print test via DOI#: " + url);
-                // Checks which HTML parser is needed, if any
-                finalURL = getFinalURL(url);
-                if (finalURL.contains("ieeexplore")) {
-                    html = fetchHTML(finalURL);
-                    metaTable = ieeeParser(metaTable, html);
-                } else if (finalURL.contains("asme.org")) {
-                    // Call asme parser
-                    metaTable = asmeParser(metaTable, url);
-                } else if (finalURL.contains("springer.com")) {
-                    // Call springer parser
-                    html = fetchHTML(finalURL);
-                    springerParser(metaTable, html);
-                } else {
-                    System.out.println("This URL does not have a supported parser.");
-                }
-            } else {
-                System.out.println("No URL found for this article.");
-            }
-            populateCSV(metaTable, csvFile, writer);
-            System.out.println(f.getName());
         }
         if (f.getName().contains(".bib") && !f.getName().startsWith("savedrecs")) {
             metaTable = bibParser(f.getPath());
-            if (metaTable.containsKey("URL")) {
-                url = metaTable.get("URL");
-                System.out.println("URL print test via URL: " + url);
-                // Checks which HTML parser is needed if any
-                if (url.contains("doi.org")) {
-                    url = getFinalURL(url);
-                }
-                if (url.contains("ieeexplore")) {
-                    // Call ieee parser
-                    html = fetchHTML(url);
-                    metaTable = ieeeParser(metaTable, html);
-                } else if (url.contains("asme")) {
-                    // Call asme parser
-                    metaTable = asmeParser(metaTable, url);
-                } else if (url.contains("springer")) {
-                    html = fetchHTML(url);
-                    metaTable = springerParser(metaTable, html);
-                    // Call springer parser
-                } else {
-                    System.out.println("This URL does not have a supported parser.");
-                }
-            } else if (metaTable.containsKey("DOI")) {
-                url = doiURLstart + metaTable.get("DOI");
-                System.out.println("URL print test via DOI#: " + url);
-                finalURL = getFinalURL(url);
-                // Checks which HTML parser is needed, if any
-                if (finalURL.contains("ieee")) {
-                    html = fetchHTML(finalURL);
-                    metaTable = ieeeParser(metaTable, html);
-                } else if (finalURL.contains("asme")) {
-                    // Call asme parser
-                    metaTable = asmeParser(metaTable, url);
-                } else if (finalURL.contains("springer")) {
-                    // Call springer parser
-                    html = fetchHTML(finalURL);
-                    metaTable = springerParser(metaTable, html);
-                } else {
-                    System.out.println("This URL does not have a supported parser.");
-                }
-            } else {
-                System.out.println("No URL found for this article.");
-            }
-            populateCSV(metaTable, csvFile, writer);
-            System.out.println(f.getName());
+            
         }
+        if (metaTable.containsKey("URL")) {
+            url = metaTable.get("URL");
+            System.out.println("URL print test via URL: " + url);
+            // Checks which HTML parser is needed if any
+            if (url.contains("doi.org")) {
+                url = getFinalURL(url);
+            }
+            if (url.contains("ieeexplore")) {
+                // Call ieee parser
+                html = fetchHTML(url);
+                metaTable = ieeeParser(metaTable, html);
+            } else if (url.contains("asme")) {
+                // Call asme parser
+                metaTable = asmeParser(metaTable, url);
+            } else if (url.contains("springer")) {
+                html = fetchHTML(url);
+                metaTable = springerParser(metaTable, html);
+                // Call springer parser
+            } else {
+                System.out.println("This URL does not have a supported parser.");
+            }
+        } else if (metaTable.containsKey("DOI")) {
+            url = doiURLstart + metaTable.get("DOI");
+            System.out.println("URL print test via DOI#: " + url);
+            finalURL = getFinalURL(url);
+            // Checks which HTML parser is needed, if any
+            if (finalURL.contains("ieee")) {
+                html = fetchHTML(finalURL);
+                metaTable = ieeeParser(metaTable, html);
+            } else if (finalURL.contains("asme")) {
+                // Call asme parser
+                metaTable = asmeParser(metaTable, url);
+            } else if (finalURL.contains("springer")) {
+                // Call springer parser
+                html = fetchHTML(finalURL);
+                metaTable = springerParser(metaTable, html);
+            } else {
+                System.out.println("This URL does not have a supported parser.");
+            }
+        } else {
+            System.out.println("No URL found for this article.");
+        }
+        populateCSV(metaTable, csvFile, writer);
+        System.out.println(f.getName());
     }
     writer.close();
 }
