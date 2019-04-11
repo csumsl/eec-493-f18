@@ -1001,7 +1001,7 @@ public static void main(String[] args) throws IOException, Exception {
         if (f.getName().startsWith("savedrecs") && f.getName().contains(".bib")) {
             // This file is a bib file that contains multiple articles
             metaTable = bibParser_multipleArticles(f.getPath(), csvFile, writer);
-            // Call specific bib parser that takes these kinds of files
+            continue;
         }
         if (f.getName().contains(".ris")) {
             metaTable = risParser(f.getPath());
