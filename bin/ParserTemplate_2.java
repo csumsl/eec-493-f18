@@ -33,7 +33,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
-public class ParserTemplate {
+public class ParserTemplate extends JFrame implements ActionListener {
+
+static JFrame ParserWin = new JFrame("Choose files to be parsered");
+static JPanel pan = new JPanel();
+static JPanel pan2 = new JPanel();
+static JLabel l;
+ParserTemplate(){}
+
     
 /* ### .RIS PARSER ### */
 public static HashMap<String, String> risParser (String path) throws FileNotFoundException, IOException {
@@ -951,6 +958,57 @@ public static HashMap<String, String> asmeParser (HashMap<String, String> input,
 }
 
 public static void main(String[] args) throws IOException, Exception {
+
+   //JFrame ParserWin = new JFrame("Choose files to be parsered");
+      ParserWin.setSize(400, 600);
+      ParserWin.setVisible(true);
+      ParserWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      JButton buttonS = new JButton("Select File"); 
+      JButton buttonH = new JButton("Help");
+      ParserTemplate Pwin = new ParserTemplate();
+      buttonS.addActionListener(Pwin); 
+      buttonH.addActionListener(Pwin);
+      //JPanel pan = new JPanel();
+      //JPanel pan2 = new JPanel();
+      JTextArea console = new JTextArea(25, 30);
+      PrintStream printStream = new PrintStream(new CustomOutputStream(console));
+      System.setOut(printStream);
+      System.setErr(printStream);      
+      console.setEditable(false);
+      pan.add(buttonS);
+      pan.add(buttonH);
+      pan2.add(console);
+      pan2.add(new JScrollPane(console));
+      l = new JLabel("no file selected");
+      pan.add(l);
+      ParserWin.add(pan);
+      ParserWin.show();
+   }
+   public void actionPerformed(ActionEvent BEvent){
+      String choice = BEvent.getActionCommand();
+      
+      if(choice.equals("Select File")){
+         ParserWin.remove(pan);
+         ParserWin.add(pan2);
+         ParserWin.show();
+         try{
+         FileParser();
+         }catch(FileNotFoundException fnfe){
+            System.out.println(fnfe.getMessage());
+         }catch(IOException ioe){
+            System.out.println(ioe.getMessage());
+         }catch(Exception ex){
+            System.out.println(ex.getMessage());
+         }
+
+      }
+      else{
+         l.setText("the user cancelled the operation");
+      }
+}
+
+public void FileParser() throws IOException, Exception {
+
     
     HashMap<String, String> metaTable = new HashMap<>();
     String input;
