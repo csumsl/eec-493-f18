@@ -973,8 +973,7 @@ public static HashMap<String, String> asmeParser (HashMap<String, String> input,
 
 public static void main(String[] args) throws IOException, Exception {
 
-   //JFrame ParserWin = new JFrame("Choose files to be parsered");
-      ParserWin.setSize(400, 600);
+      ParserWin.setSize(400, 400);
       ParserWin.setVisible(true);
       ParserWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       JButton buttonS = new JButton("Select File"); 
@@ -982,19 +981,17 @@ public static void main(String[] args) throws IOException, Exception {
       ParserTemplate Pwin = new ParserTemplate();
       buttonS.addActionListener(Pwin); 
       buttonH.addActionListener(Pwin);
-      //JPanel pan = new JPanel();
-      //JPanel pan2 = new JPanel();
-      JTextArea console = new JTextArea(25, 30);
+      JTextArea console = new JTextArea(20, 30);
       PrintStream printStream = new PrintStream(new CustomOutputStream(console));
       System.setOut(printStream);
       System.setErr(printStream);      
       console.setEditable(false);
+      l = new JLabel("Press Select File to pick a file to parse or help for instructions");
+      pan.add(l);
       pan.add(buttonS);
       pan.add(buttonH);
       pan2.add(console);
       pan2.add(new JScrollPane(console));
-      l = new JLabel("no file selected");
-      pan.add(l);
       ParserWin.add(pan);
       ParserWin.show();
    }
