@@ -29,6 +29,8 @@ import java.util.Set;
 import javax.swing.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.filechooser.*;
 import javax.swing.JTextArea;
 import java.io.OutputStream;
@@ -1014,7 +1016,14 @@ public static void main(String[] args) throws IOException, Exception {
 
       }
       else{
-         l.setText("the user cancelled the operation");
+         try{
+         URI help = new URI("https://github.com/csumsl/eec-493-f18/blob/master/bin/LibrariesUsed/Readme");
+         java.awt.Desktop.getDesktop().browse(help);
+         }catch(IOException ioe){
+            System.out.println(ioe.getMessage());
+         }catch(URISyntaxException urise){
+            System.out.println(urise.getMessage());
+         }
       }
 }
 
