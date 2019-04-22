@@ -1092,6 +1092,7 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
         if (metaTable.containsKey("URL")) {
             url = metaTable.get("URL");
             System.out.println("URL print test via URL: " + url);
+            publish(console);
             // Checks which HTML parser is needed if any
             if (url.contains("doi.org")) {
                 url = getFinalURL(url);
@@ -1109,10 +1110,12 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
                 // Call springer parser
             } else {
                 System.out.println("This URL does not have a supported parser.");
+                publish(console);
             }
         } else if (metaTable.containsKey("DOI")) {
             url = doiURLstart + metaTable.get("DOI");
             System.out.println("URL print test via DOI#: " + url);
+            publish(console);
             finalURL = getFinalURL(url);
             // Checks which HTML parser is needed, if any
             if (finalURL.contains("ieee")) {
@@ -1127,9 +1130,11 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
                 metaTable = springerParser(metaTable, html);
             } else {
                 System.out.println("This URL does not have a supported parser.");
+                publish(console);
             }
         } else {
             System.out.println("No URL found for this article.");
+            publish(console);
         }
         populateCSV(metaTable, csvFile, writer);
         System.out.println(f.getName());
