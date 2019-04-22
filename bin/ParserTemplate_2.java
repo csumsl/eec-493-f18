@@ -55,6 +55,7 @@ static JFrame ParserWin = new JFrame("Choose files to be parsered");
 static JPanel pan = new JPanel();
 static JPanel pan2 = new JPanel();
 static JLabel l;
+static JTextArea console = new JTextArea(20, 30);
 ParserTemplate(){}
 
     
@@ -983,7 +984,6 @@ public static void main(String[] args) throws IOException, Exception {
       ParserTemplate Pwin = new ParserTemplate();
       buttonS.addActionListener(Pwin); 
       buttonH.addActionListener(Pwin);
-      JTextArea console = new JTextArea(20, 30);
       PrintStream printStream = new PrintStream(new CustomOutputStream(console));
       System.setOut(printStream);
       System.setErr(printStream);      
@@ -1004,15 +1004,8 @@ public static void main(String[] args) throws IOException, Exception {
          ParserWin.remove(pan);
          ParserWin.add(pan2);
          ParserWin.show();
-         try{
-         FileParser();
-         }catch(FileNotFoundException fnfe){
-            System.out.println(fnfe.getMessage());
-         }catch(IOException ioe){
-            System.out.println(ioe.getMessage());
-         }catch(Exception ex){
-            System.out.println(ex.getMessage());
-         }
+         fileParser fileParser = new fileParser(console);
+         fileParser.execute();
 
       }
       else{
@@ -1027,12 +1020,19 @@ public static void main(String[] args) throws IOException, Exception {
       }
 }
 
-public void FileParser() throws IOException, Exception {
 
-    
+
+class fileParser extends SwingWorker<Integer, JTextArea> {
+
+   private final JTextArea console;
+
+
+   public fileParser(final JTextArea console){
+      this.console = console;
+   }
+  protected Integer doInBackground() throws IOException, Exception{
     HashMap<String, String> metaTable = new HashMap<>();
     String input;
-    
     // File chooser. Allows user to select any directory
     JFileChooser chooser = new JFileChooser();
     chooser.setCurrentDirectory(new java.io.File("."));
@@ -1073,7 +1073,8 @@ public void FileParser() throws IOException, Exception {
     String finalURL;
     ArrayList<String> html = new ArrayList<>();
     String doiURLstart = "https://doi.org/";
-    
+    int totalFiles = 0;
+    int end = 0;
     // Calls appropriate parsers
     for (File f: files) {
         if (f.getName().startsWith("savedrecs") && f.getName().contains(".bib")) {
@@ -1132,8 +1133,13 @@ public void FileParser() throws IOException, Exception {
         }
         populateCSV(metaTable, csvFile, writer);
         System.out.println(f.getName());
+        publish(console);
     }
+    System.out.println("done");
+    publish(console);
     writer.close();
+    return end;
+}
 }
 
 public static File CSVgen(PrintWriter writer) throws IOException { //This method sets the names for all the value types (published date, issue, journal, etc.)
