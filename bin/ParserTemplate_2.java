@@ -49,14 +49,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
-public class ParserTemplate extends JFrame implements ActionListener {
+public class Parsertemplate extends JFrame implements ActionListener {
 
 static JFrame ParserWin = new JFrame("Choose files to be parsered");
 static JPanel pan = new JPanel();
 static JPanel pan2 = new JPanel();
 static JLabel l;
-static JTextArea console = new JTextArea(20, 30);
-ParserTemplate(){}
+static JTextArea console = new JTextArea(20, 55);
+Parsertemplate(){}
 
     
 /* ### .RIS PARSER ### */
@@ -797,6 +797,12 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
 /* ### Maximum authors in an article (Used for the asme.org parser) ###*/
 public static int maxAuth;
 
+/* ### Counts how many files have been parsed ###*/
+public static int numFiles = 0;
+
+/* ### Global Variable that holds file name ###*/
+public static String fileName;
+
 /* ### IEEExplore PARSER ### */
 public static HashMap<String, String> ieeeParser (HashMap<String, String> input, ArrayList<String> html) {
     
@@ -839,7 +845,7 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
                     String[] data = authors.get(i).split("\"affiliation\":\"");
                     String[] data2 = data[1].split("\",\"");
                     // data2[0] contains the affiliation for this particular author
-                    System.out.println("Placing new institution for " + (input.get("author"+ j +"_lname")));
+                    //System.out.println("Placing new institution for " + (input.get("author"+ j +"_lname")));
                     input.put("author" + j + "_institution", data2[0]);
                     i++;
                     j++;
@@ -854,6 +860,7 @@ public static HashMap<String, String> ieeeParser (HashMap<String, String> input,
                     j++;
             }
         }
+        System.out.println("Placing affiliations for " + fileName);
         return input;
     }
 }
@@ -874,7 +881,7 @@ public static HashMap<String, String> springerParser (HashMap<String, String> in
                 institutions.addElement(currentString.substring(slice, currentString.length() - 3));
             }
             for(int k = 1; k < 10; k++) {
-                System.out.println(author[0] + " is compared with " + input.get("author" + k + "_fname") + " and " + author[1] + " is compared with " + input.get("author" + k + "_lname"));
+                //System.out.println(author[0] + " is compared with " + input.get("author" + k + "_fname") + " and " + author[1] + " is compared with " + input.get("author" + k + "_lname"));
                 if(author[0].equals(input.get("author" + k + "_fname")) && author[author.length - 1].equals(input.get("author" + k + "_lname"))) { //Find the author for the institution.
                     String formattedInstitutions = institutions.get(0);
                     for(int l = 1; l < institutions.size(); l++) {
@@ -886,6 +893,7 @@ public static HashMap<String, String> springerParser (HashMap<String, String> in
             }
         }
     }
+    System.out.println("Placing affiliations for " + fileName);
     return input;
 }
 
@@ -916,7 +924,7 @@ public static HashMap<String, String> asmeParser (HashMap<String, String> input,
 
     for (int i = 0; i < citationInfo.size(); i++) {
         // Test print of new arraylist
-        System.out.println("citationInfo index " + i + ": " + citationInfo.get(i));
+        //System.out.println("citationInfo index " + i + ": " + citationInfo.get(i));
     }
 
     int authors = 1;
@@ -929,26 +937,26 @@ public static HashMap<String, String> asmeParser (HashMap<String, String> input,
                 i++;
                 input.put("author" + authors + "_email",citationInfo.get(i));
                 // Test print to show what author was just recognized:
-                System.out.println("Author: " + input.get("author" + authors + "_fname") + " " + input.get("author" + authors + "_lname"));
-                System.out.println("***Entered author email in metaTable***");
+                //System.out.println("Author: " + input.get("author" + authors + "_fname") + " " + input.get("author" + authors + "_lname"));
+                //System.out.println("***Entered author email in metaTable***");
                 i++;
                 if (citationInfo.get(i).equals("citation_author_institution")) {
                     i++;
                     input.put("author" + authors + "_institution",citationInfo.get(i));
-                    System.out.println("***Entered author institution in metaTable***");
+                    //System.out.println("***Entered author institution in metaTable***");
                     authors++;
                 }
             } else if (citationInfo.get(i).equals("citation_author_institution")) {
                 i++;
                 // Test print to show what author was just recognized:
-                System.out.println("Author: " + input.get("author" + authors + "_fname") + " " + input.get("author" + authors + "_lname"));
+                //System.out.println("Author: " + input.get("author" + authors + "_fname") + " " + input.get("author" + authors + "_lname"));
                 input.put("author" + authors + "_institution",citationInfo.get(i));
-                System.out.println("***Entered author institution in metaTable***");
+                //System.out.println("***Entered author institution in metaTable***");
                 i++;
                 if (citationInfo.get(i).equals("citation_author_email")) {
                     i++;
                     input.put("author" + authors + "_email",citationInfo.get(i));
-                    System.out.println("***Entered author email in metaTable***");
+                    //System.out.println("***Entered author email in metaTable***");
                     authors++;
                 }
                 authors++;
@@ -971,17 +979,18 @@ public static HashMap<String, String> asmeParser (HashMap<String, String> input,
                 break;
         }
     }
+    System.out.println("Placing affiliations for " + fileName);
     return input;
 }
 
 public static void main(String[] args) throws IOException, Exception {
 
-      ParserWin.setSize(400, 400);
+      ParserWin.setSize(650, 400);
       ParserWin.setVisible(true);
       ParserWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       JButton buttonS = new JButton("Select File"); 
       JButton buttonH = new JButton("Help");
-      ParserTemplate Pwin = new ParserTemplate();
+      Parsertemplate Pwin = new Parsertemplate();
       buttonS.addActionListener(Pwin); 
       buttonH.addActionListener(Pwin);
       PrintStream printStream = new PrintStream(new CustomOutputStream(console));
@@ -1077,6 +1086,7 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
     int end = 0;
     // Calls appropriate parsers
     for (File f: files) {
+        fileName = f.getName();
         if (f.getName().startsWith("savedrecs") && f.getName().contains(".bib")) {
             // This file is a bib file that contains multiple articles
             metaTable = bibParser_multipleArticles(f.getPath(), csvFile, writer);
@@ -1091,7 +1101,7 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
         }
         if (metaTable.containsKey("URL")) {
             url = metaTable.get("URL");
-            System.out.println("URL print test via URL: " + url);
+            //System.out.println("URL print test via URL: " + url);
             publish(console);
             // Checks which HTML parser is needed if any
             if (url.contains("doi.org")) {
@@ -1100,54 +1110,62 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
             if (url.contains("ieeexplore")) {
                 // Call ieee parser
                 html = fetchHTML(url);
+                System.out.println("Accessing Ieeexplore parser for affiliation data...");
                 metaTable = ieeeParser(metaTable, html);
             } else if (url.contains("asme")) {
                 // Call asme parser
+                System.out.println("Accessing Asme parser for affiliation data...");
                 metaTable = asmeParser(metaTable, url);
             } else if (url.contains("springer")) {
                 html = fetchHTML(url);
+                System.out.println("Accessing Springer parser for affiliation data...");
                 metaTable = springerParser(metaTable, html);
                 // Call springer parser
             } else {
-                System.out.println("This URL does not have a supported parser.");
+                System.out.println(f.getName() + " does not have a supported affiliation parser");
                 publish(console);
             }
         } else if (metaTable.containsKey("DOI")) {
             url = doiURLstart + metaTable.get("DOI");
-            System.out.println("URL print test via DOI#: " + url);
+            //System.out.println("URL print test via DOI#: " + url);
             publish(console);
             finalURL = getFinalURL(url);
             // Checks which HTML parser is needed, if any
             if (finalURL.contains("ieee")) {
                 html = fetchHTML(finalURL);
+                System.out.println("Accessing Ieeexplore parser for affiliation data...");
                 metaTable = ieeeParser(metaTable, html);
             } else if (finalURL.contains("asme")) {
                 // Call asme parser
+                System.out.println("Accessing Asme parser for affiliation data...");
                 metaTable = asmeParser(metaTable, url);
             } else if (finalURL.contains("springer")) {
                 // Call springer parser
                 html = fetchHTML(finalURL);
+                System.out.println("Accessing Springer parser for affiliation data...");
                 metaTable = springerParser(metaTable, html);
             } else {
-                System.out.println("This URL does not have a supported parser.");
+                System.out.println(f.getName() + " does not have a supported affiliation parser");
                 publish(console);
             }
         } else {
-            System.out.println("No URL found for this article.");
+            System.out.println(f.getName() + " does not have a supported parser.");
             publish(console);
         }
         populateCSV(metaTable, csvFile, writer);
-        System.out.println(f.getName());
+        System.out.println(f.getName() + " done parsing");
+        numFiles++;
+        System.out.println(numFiles + " file(s) parsed");
         publish(console);
     }
-    System.out.println("done");
+    System.out.println("Fetching complete! CSV file created");
     publish(console);
     writer.close();
     return end;
 }
 }
 
-public static File CSVgen(PrintWriter writer) throws IOException { //This method sets the names for all the value types (published date, issue, journal, etc.)
+public static File CSVgen(PrintWriter writer) throws IOException { // This method sets the names for all the value types (published date, issue, journal, etc.)
     File tempfile = new File("tempfile.csv");
 	/*if(tempfile.createNewFile()) {
             System.out.println("FILE CREATED");
@@ -1233,14 +1251,12 @@ public static String getFinalURL(String url) throws IOException {
         String redirectUrl = con.getHeaderField("Location");
         return getFinalURL(redirectUrl);
     }
-    System.out.println("URL TEST 7: " + url);
     return url;
 }
     
 // Alternative to Jsoup -- Puts HTML source code into ArrayList
 public static ArrayList fetchHTML(String url) throws Exception {
-    
-    System.out.println("Grabbing HTML source code from: " + url);
+    //System.out.println("Grabbing HTML source code from: " + url);
     Scanner s;
     URL u;
     u = new URL(url);
