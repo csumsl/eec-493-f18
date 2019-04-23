@@ -18,6 +18,7 @@
 
 3. Lastly, make sure the file format is set to BibTeX
   ![Alt text](https://i.imgur.com/qOmeGWk.png)
+  The file will be located in your downloads folder if done correctly.
     
 ## Program Instructions:
 
