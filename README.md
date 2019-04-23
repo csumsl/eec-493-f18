@@ -49,3 +49,7 @@
   Q: The output excel file is a .csv, will that cause issues?
   
   A: No, you can use it as a normal excel file. .csv stands for comma separated values and it's how the program creates the excel spreadsheet from within the program. If you want to convert it over to another excel format such as .xlsx, just open the .csv file that was just created and save it as any type of excel filetype you want.
+  
+  Q: Can the folder that contains the citation files include both .bib and .ris files?
+  
+  A: Yes, put as many .bib and .ris files in the folder as you want. Very large amounts, like thousands, may take a while to execute through, but it will do the job.
