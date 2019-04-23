@@ -1019,7 +1019,7 @@ public static void main(String[] args) throws IOException, Exception {
       }
       else{
          try{
-         URI help = new URI("https://github.com/csumsl/eec-493-f18/blob/master/bin/LibrariesUsed/Readme");
+         URI help = new URI("https://github.com/csumsl/eec-493-f18/blob/master/README.md");
          java.awt.Desktop.getDesktop().browse(help);
          }catch(IOException ioe){
             System.out.println(ioe.getMessage());
