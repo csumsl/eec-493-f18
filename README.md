@@ -31,8 +31,12 @@
     
   By doing this, the program has an easier time checking for affiliations.
   
-## FAQ(s):
+## FAQs:
 
   Q: Does the program grab affiliations?
 
   A: Yes, if the article's host website has a supported parser the program will attempt to parse for the author affiliations  (institution and email if applicable). The three websites that are supported at the moment are https://www.asme.org/, https://ieeexplore.ieee.org/, and https://www.springer.com/us. If a website doesn't have a supported parser that means the website has incompatible HTML code that can be parsed in a trivial matter.
+  
+  Q: The output excel file is a .csv, will that cause issues?
+  
+  A: No, you can use it as a normal excel file. .csv stands for comma separated values and it's how the program creates the excel spreadsheet from within the program. If you want to convert it over to another excel format such as .xlsx, just open the .csv file that was just created and save it as any type of excel filetype you want.
