@@ -19,7 +19,7 @@
 ## Instructions:
 
 1. Select a folder which contains the citation files
-    - Acceptable files include .bib and .ris
+    - Acceptable files include **.bib** and **.ris**
     ![Alt text](https://i.imgur.com/UDnykkJ.png)
     ![Alt text](https://i.imgur.com/dFzzwXX.png)
     
