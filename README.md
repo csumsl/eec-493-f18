@@ -1,6 +1,14 @@
 # Citation Metadata to Excel ReadMe
 
   This document serves as a guide on how to use the program and how to achieve the best results.
+  
+## Table of Contents:
+
+1. [Requirements](https://github.com/csumsl/eec-493-f18/blob/master/README.md#requirements)
+2. [Retrieving citation file off of Web of Science](https://github.com/csumsl/eec-493-f18/blob/master/README.md#retrieving-citation-file-off-of-web-of-science)
+3. [Program Instructions](https://github.com/csumsl/eec-493-f18/blob/master/README.md#program-instructions)
+4. [Other Recommendations](https://github.com/csumsl/eec-493-f18/blob/master/README.md#other-recommendations)
+5. [FAQs](https://github.com/csumsl/eec-493-f18/blob/master/README.md#faqs)
 
 ## Requirements:
 
