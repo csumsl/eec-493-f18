@@ -10,13 +10,16 @@
     
 ## Retrieving citation file off of Web of Science:
 
-1. 
+1. First, select the articles you want to export as a .bib file
+  ![Alt text](https://i.imgur.com/d4aPcGc.png)
 
-2. 
+2. Second, select the setting "Save to Other File Formats"
+  ![Alt text](https://i.imgur.com/XzT2Ikb.png)
 
-3. 
+3. Lastly, make sure the file format is set to BibTeX
+  ![Alt text](https://i.imgur.com/qOmeGWk.png)
     
-## Instructions:
+## Program Instructions:
 
 1. Select a folder which contains the citation files
     - Acceptable files include **.bib** and **.ris**
