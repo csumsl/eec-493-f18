@@ -37,11 +37,20 @@
 
 ## Other Recommendations:
 
-  For the best results, go to an article's webpage directly and retrieve the citation file (.bib or .ris).
-  
-  Here are some examples:
-    - Future images w/ explanation
-    
+  For the best results, go to an article's webpage directly and retrieve the citation file (.bib or .ris). Here are some examples of how to export the citation off a website. Most websites will have some system like the ones listed below.
+
+**Example 1:**
+![Alt text](https://i.imgur.com/RBah8Wu.png)
+![Alt text](https://i.imgur.com/IQWEk8y.png)
+
+**Example 2:**
+![Alt text](https://i.imgur.com/P6vFXur.png)
+![Alt text](https://i.imgur.com/KQjkTBX.png)
+
+**Example 3:**
+![Alt text](https://i.imgur.com/BUcqT7X.png)
+![Alt text](https://i.imgur.com/Jcx3LIr.png)
+
   By doing this, the program has an easier time checking for affiliations.
   
 ## FAQs:
