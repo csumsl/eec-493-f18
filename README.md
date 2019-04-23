@@ -8,19 +8,28 @@
 2. Internet Connection
     - Used to fetch affiliations if applicable
     
+## Retrieving citation file off of Web of Science:
+
+1. 
+
+2. 
+
+3. 
+    
 ## Instructions:
 
 1. Select a folder which contains the citation files
     - Acceptable files include .bib and .ris
-    * include image of this step here *
+    ![Alt text](https://i.imgur.com/UDnykkJ.png)
+    ![Alt text](https://i.imgur.com/dFzzwXX.png)
     
 2. Choose name and location for excel spreadsheet
-    * include image of this step here *
+    ![Alt text](https://i.imgur.com/32GmT2u.png)
     
 3. Let program run until completion
+    ![Alt text](https://i.imgur.com/7wa0P8R.png)
 
 4. Navigate to the excel spreadsheet location and you're done!
-    * include image of this step here *
 
 ## Other Recommendations:
 
