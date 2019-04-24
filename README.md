@@ -28,7 +28,7 @@
   ![Alt text](https://i.imgur.com/qOmeGWk.png)
   The file will be located in your downloads folder if done correctly. 
   
-  **MAKE SURE THIS FILE IS NAMED savedrecs.bib DO NOT ALTER THE FILENAME**
+  **MAKE SURE THIS FILE IS NAMED savedrecs.bib DO NOT ALTER THE FILENAME. This is only for .bib files coming off of Web of Science!**
     
 ## Program Instructions:
 
