@@ -25,7 +25,7 @@
   ![Alt text](https://i.imgur.com/XzT2Ikb.png)
 
 3. Lastly, make sure the file format is set to BibTeX
-  ![Alt text](https://i.imgur.com/qOmeGWk.png)
+  ![Alt text](https://i.imgur.com/iwEQAxZ.png)
   The file will be located in your downloads folder if done correctly. 
   
   **MAKE SURE THIS FILE IS NAMED savedrecs.bib DO NOT ALTER THE FILENAME. This is only for .bib files coming off of Web of Science!**
