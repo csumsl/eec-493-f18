@@ -76,3 +76,11 @@
   Q: Can the folder that contains the citation files include both .bib and .ris files?
   
   A: Yes, put as many .bib and .ris files in the folder as you want. Very large amounts, like thousands, may take a while to execute through, but it will do the job.
+  
+  Q: Can I have multiple savedrecs.bib files from Web of Science in one folder?
+  
+  A: No. The program only supports ONE savedrecs.bib file at a time.
+  
+  Q: Can the savedrecs.bib from Web of Science be renamed to something else?
+  
+  A: No, it has to stay named exactly like: savedrecs.bib
