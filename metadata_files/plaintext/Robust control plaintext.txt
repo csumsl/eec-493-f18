@@ -1,4 +1,0 @@
-V. Azimi, T. Shu, H. Zhao, E. Ambrose, A. D. Ames and D. Simon, "Robust control of a powered transfemoral prosthesis device with experimental verification," 2017 American Control Conference (ACC), Seattle, WA, 2017, pp. 517-522.
-doi: 10.23919/ACC.2017.7963005
-keywords: {Lyapunov methods;optimisation;PD control;prosthetics;robust control;variable structure systems;powered transfemoral prosthesis device;robust passivity controller;robust sliding mode controller;model-based controllers;proportional-derivative control methods;Lyapunov stability theorem;AMPRO3;optimization problem;Prosthetics;Robustness;Legged locomotion;Trajectory;Knee;Impedance;Mathematical model},
-URL: http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7963005&isnumber=7962914
