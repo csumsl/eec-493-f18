@@ -431,12 +431,33 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
     String Map = "";
     String temp = "";
     String last = "";
+    
+    Boolean checker = false;
+    Boolean checker2 = false;
+    Boolean pass = false;
 
     // Skips first two lines
     br.readLine(); br.readLine();
     
     // Loops continues until it reaches the end of the file
     while((line = br.readLine()) != null) {
+        // Check if line is worth reading
+        while (checker2 == false) {
+            if (line.startsWith("Series") || line.startsWith("Note") || line.startsWith("Publisher") || line.startsWith("Address") || line.startsWith("Language") || line.startsWith("Affiliation") || line.startsWith("EISSN") || line.startsWith("Keywords-Plus") || line.startsWith("Research-Areas") || line.startsWith("Web-of-Science-Categories") || line.startsWith("Author-Email") || line.startsWith("Funding-Acknowledgement") || line.startsWith("Funding-Text") || line.startsWith("Number-of-Cited-References") || line.startsWith("Times-Cited") || line.startsWith("Journal-ISO")) {
+                line = br.readLine();
+                while (checker == false) {
+                    if (line.startsWith("   ")) {
+                        line = br.readLine();
+                    } else {
+                        checker = true;
+                    }
+                }
+                checker = false;
+            } else {
+                checker2 = true;
+            }
+        }
+        checker2 = false;
         if (line.startsWith("   ")) {
             while (line.startsWith("   ")) {
                 if (line.contains("}},")) {
@@ -445,6 +466,7 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                     metadataTable.put(last, Map + temp);
                     temp = "";
                     Map = "";
+                    last = "";
                     break;
                 } else {
                     temp = temp.concat(" " + line.replaceFirst("   ", ""));
@@ -468,9 +490,27 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
         if (line.contains("{")) {
             String[] data = line.split("[={}]");
             Key = data[0].replace(" ", "");
+            // if data.length = 3 then there is more author data to grab
+            if (data.length == 3) {
+                line = br.readLine();
+                while (checker == false) {
+                    // If this is true, then all the authors have been seen
+                    if (line.contains("},")) {
+                        data[2] = data[2].concat(" " + line.replaceFirst("   ", ""));
+                        data[2] = data[2].replace("},", "");
+                        checker = true;
+                    } else {
+                        data[2] = data[2].concat(" " + line.replaceFirst("   ", ""));
+                        line = br.readLine();
+                    }
+                }
+                // Resets boolean
+                checker = false;
+                pass = true;
+            }
             // if data.length = 4 then there is more data to grab for that key
-            if (data.length == 4) {
-                if (Key.contains("Author") || Key.contains("author")) {
+            if (data.length == 4 || pass == true) {
+                if (Key.equals("Author") || Key.equals("Author")) {
                     Map = data[2];
                     // If there's only one author
                     if (!Map.contains(" and ")) {
@@ -565,6 +605,10 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                     Map = data[3];
                     metadataTable.put("volnum", Map);
                 }
+                if(Key.equals("number") || Key.equals("Number")) {
+                    Map = data[3];
+                    metadataTable.put("issnum", Map);
+                }
                 if(Key.equals("URL") || Key.equals("url")) {
                     Map = data[3];
                     metadataTable.put("URL", Map);
@@ -582,15 +626,23 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                         metadataTable.put("First page", data3[0]);
                     }
                 }
+                if(Key.equals("Month") || Key.equals("month")) {
+                    Map = data[3];
+                    metadataTable.put("Season", Map);
+                }
                 if(Key.equals("abstract") || Key.equals("Abstract")) {
                     Map = data[3];
                     metadataTable.put("Abstract", Map);
                     last = "Abstract";
                 }
+                if(Key.equals("Type") || Key.equals("type")) {
+                    Map = data[3];
+                    metadataTable.put("Type", Map);
+                }
                 if (Key.equals("keywords") || Key.equals("Keywords")) {
                     Map = data[3];
                     if (Map.contains(";")) {
-                        Map = Map.replace(";", ", ");
+                        Map = Map.replace(";", ",");
                         metadataTable.put("Keywords", Map);
                         last = "Keywords";
                     } else {
@@ -606,12 +658,18 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                     Map = data[3];
                     metadataTable.put("ISSN", Map);
                 }
+                if(Key.equals("ORCID-Numbers")) {
+                    Map = data[3];
+                    metadataTable.put("orcid id", Map);
+                    last = "orcid id";
+                }
+                pass = false;
             }
             
             // if data.length = 6 then all the data has been found
             if (data.length == 6) {
                 Key = data[0].replace(" ", "");
-                if (Key.contains("Author") || Key.contains("author")) {
+                if (Key.equals("Author") || Key.equals("author")) {
                     Map = data[3];
                     // If there's only one author
                     if (!Map.contains(" and ")) {
@@ -706,6 +764,10 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                     Map = data[3];
                     metadataTable.put("volnum", Map);
                 }
+                if(Key.equals("Number") || Key.equals("number")) {
+                    Map = data[3];
+                    metadataTable.put("issnum", Map);
+                }
                 if (Key.equals("pages") || Key.equals("Pages")) {
                     Map = data[3];
                     String[] data3 = Map.split("-");
@@ -719,16 +781,23 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                         metadataTable.put("First page", data3[0]);
                     }
                 }
-                // add month
+                if(Key.equals("Month") || Key.equals("month")) {
+                    Map = data[3];
+                    metadataTable.put("Season", Map);
+                }
                 if(Key.equals("abstract") || Key.equals("Abstract")) {
                     Map = data[3];
                     metadataTable.put("Abstract", Map);
                     last = "Abstract";
                 }
+                if(Key.equals("Type") || Key.equals("type")) {
+                    Map = data[3];
+                    metadataTable.put("Type", Map);
+                }
                 if (Key.equals("keywords") || Key.equals("Keywords")) {
                     Map = data[3];
                     if (Map.contains(";")) {
-                        Map = Map.replace(";", ", ");
+                        Map = Map.replace(";", ",");
                         metadataTable.put("Keywords", Map);
                         last = "Keywords";
                     } else {
@@ -747,6 +816,11 @@ public static HashMap<String, String> bibParser_multipleArticles (String path, F
                 if(Key.equals("ISSN") || Key.equals("issn")) {
                     Map = data[3];
                     metadataTable.put("ISSN", Map);
+                }
+                if(Key.equals("ORCID-Numbers")) {
+                    Map = data[3];
+                    metadataTable.put("orcid id", Map);
+                    last = "orcid id";
                 }
             }
         }
@@ -1021,21 +1095,26 @@ class fileParser extends SwingWorker<Integer, JTextArea> {
     String finalURL;
     ArrayList<String> html = new ArrayList<>();
     String doiURLstart = "https://doi.org/";
-    int totalFiles = 0;
     int end = 0;
     // Calls appropriate parsers
     for (File f: files) {
         fileName = f.getName();
         if (f.getName().startsWith("savedrecs") && f.getName().contains(".bib")) {
             // This file is a bib file that contains multiple articles
+            System.out.println("Accessing .bib parser...");
             metaTable = bibParser_multipleArticles(f.getPath(), csvFile, writer);
+            System.out.println(".bib parser complete");
             continue;
         }
         if (f.getName().contains(".ris")) {
+            System.out.println("Accessing .ris parser...");
             metaTable = risParser(f.getPath());
+            System.out.println(".ris parser complete");
         }
         if (f.getName().contains(".bib") && !f.getName().startsWith("savedrecs")) {
+            System.out.println("Accessing .bib parser...");
             metaTable = bibParser(f.getPath());
+            System.out.println(".bib parser complete");
             
         }
         if (metaTable.containsKey("URL")) {
@@ -1110,7 +1189,7 @@ public static File CSVgen(PrintWriter writer) throws IOException { // This metho
             System.out.println("FILE ALREADY EXISTS");
             throw new IOException("FILE ALREADY EXISTS");
 	}*/
-    writer.write("title,filename,source_fulltext_url,fulltext_url,version,copyright_statement,distribution_license,embargo_date,keywords,Abstract,author1_fname,author1_mname,author1_lname,author1_suffix,author1_email,author1_institution,author1_is_corporate,author2_fname,author2_mname,author2_lname,author2_suffix,author2_email,author2_institution,author2_is_corporate,author3_fname,author3_mname,author3_lname,author3_suffix,author3_email,author3_institution,author3_is_corporate,author4_fname,author4_mname,author4_lname,author4_suffix,author4_email,author4_institution,author4_is_corporate,author5_fname,author5_mname,author5_lname,author5_suffix,author5_email,author5_institution,author5_is_corporate,author6_fname,author6_mname,author6_lname,author6_suffix,author6_email,author6_institution,author6_is_corporate,article_desc,disciplines,comments,create_openurl,custom_citation,document_type,doi,honors_pub,issn,volnum,issnum,source_publication,fpage,lpage,peer_reviewed,mcnair,orcid_id,publication_date,season\n");
+    writer.write("title,filename,source_fulltext_url,fulltext_url,version,copyright_statement,distribution_license,embargo_date,keywords,Abstract,author1_fname,author1_mname,author1_lname,author1_suffix,author1_email,author1_institution,author1_is_corporate,author2_fname,author2_mname,author2_lname,author2_suffix,author2_email,author2_institution,author2_is_corporate,author3_fname,author3_mname,author3_lname,author3_suffix,author3_email,author3_institution,author3_is_corporate,author4_fname,author4_mname,author4_lname,author4_suffix,author4_email,author4_institution,author4_is_corporate,author5_fname,author5_mname,author5_lname,author5_suffix,author5_email,author5_institution,author5_is_corporate,author6_fname,author6_mname,author6_lname,author6_suffix,author6_email,author6_institution,author6_is_corporate,author7_fname,author7_mname,author7_lname,author7_suffix,author7_email,author7_institution,author7_is_corporate,author8_fname,author8_mname,author8_lname,author8_suffix,author8_email,author8_institution,author8_is_corporate,author9_fname,author9_mname,author9_lname,author9_suffix,author9_email,author9_institution,author9_is_corporate,author10_fname,author10_mname,author10_lname,author10_suffix,author10_email,author10_institution,author10_is_corporate,author11_fname,author11_mname,author11_lname,author11_suffix,author11_email,author11_institution,author11_is_corporate,author12_fname,author12_mname,author12_lname,author12_suffix,author12_email,author12_institution,author12_is_corporate,author13_fname,author13_mname,author13_lname,author13_suffix,author13_email,author13_institution,author13_is_corporate,author14_fname,author14_mname,author14_lname,author14_suffix,author14_email,author14_institution,author14_is_corporate,author15_fname,author15_mname,author15_lname,author15_suffix,author15_email,author15_institution,author15_is_corporate,author16_fname,author16_mname,author16_lname,author16_suffix,author16_email,author16_institution,author16_is_corporate,author17_fname,author17_mname,author17_lname,author17_suffix,author17_email,author17_institution,author17_is_corporate,author18_fname,author18_mname,author18_lname,author18_suffix,author18_email,author18_institution,author18_is_corporate,author19_fname,author19_mname,author19_lname,author19_suffix,author19_email,author19_institution,author19_is_corporate,author20_fname,author20_mname,author20_lname,author20_suffix,author20_email,author20_institution,author20_is_corporate,article_desc,disciplines,comments,create_openurl,custom_citation,document_type,doi,honors_pub,issn,volnum,issnum,source_publication,fpage,lpage,peer_reviewed,mcnair,orcid_id,publication_date,season\n");
     return tempfile;
 }
 	
@@ -1126,7 +1205,7 @@ public static void populateCSV(HashMap<String, String> input, File csvFile, Prin
     bigString = csvHelper(input, "Embargo Date", bigString);
     bigString = csvHelper(input, "Keywords", bigString);
     bigString = csvHelper(input, "Abstract", bigString);
-    for(int i = 1; i <= 6; i++) {
+    for(int i = 1; i <= 20; i++) {
         bigString = csvHelper(input, "author" + i + "_fname", bigString);
         bigString = csvHelper(input, "author" + i + "_mname", bigString);
         bigString = csvHelper(input, "author" + i + "_lname", bigString);
