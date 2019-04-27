@@ -2,7 +2,7 @@
 
   This document serves as a guide on how to use the program and how to achieve the best results.
   
-  **Download link ---> ** [HERE](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar)
+  **Download link --->** [HERE](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar)
   
 ## Table of Contents:
 
