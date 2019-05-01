@@ -80,34 +80,34 @@
   
 ## FAQs:
 
-  Q: I just have one .bib/.ris file I want to export to excel, can I just select that .bib/.ris file?
+  *Q: I just have one .bib/.ris file I want to export to excel, can I just select that .bib/.ris file?*
   
   A: The program can do as many files as you want at a time. No matter the amount of files be it 1 or 40, you must place all the file(s) in a folder and select that folder from within the program when prompted.
 
-  Q: Does the program grab affiliations?
+  *Q: Does the program grab affiliations?*
 
   A: Yes, if the article's host website has a supported parser the program will attempt to parse for the author affiliations  (institution and email if applicable). The three websites that are supported at the moment are https://www.asme.org/, https://ieeexplore.ieee.org/, and https://www.springer.com/us. If a website doesn't have a supported parser that means the website has incompatible HTML code that can't be parsed in a trivial matter.
   
-  Q: The output excel file is a .csv, will that cause issues?
+  *Q: The output excel file is a .csv, will that cause issues?*
   
   A: No, you can use it as a normal excel file. .csv stands for comma separated values and it's how the program creates the excel spreadsheet from within the program. If you want to convert it over to another excel format such as .xlsx, just open the .csv file that was just created and save it as any type of excel filetype you want.
   
-  Q: Can the folder that contains the citation files include both .bib and .ris files?
+  *Q: Can the folder that contains the citation files include both .bib and .ris files?*
   
   A: Yes, put as many .bib and .ris files in the folder as you want. Very large amounts, like thousands, may take a while to execute through, but it will do the job.
   
-  Q: Can I have multiple savedrecs.bib files from Web of Science in one folder?
+  *Q: Can I have multiple savedrecs.bib files from Web of Science in one folder?*
   
   A: No. The program only supports ONE savedrecs.bib file at a time. (See [File handling](https://github.com/csumsl/eec-493-f18/blob/master/README.md#file-handling) section for more information)
   
-  Q: Can the savedrecs.bib from Web of Science be renamed to something else?
+  *Q: Can the savedrecs.bib from Web of Science be renamed to something else?*
   
   A: No, it has to stay named exactly like: savedrecs.bib (See [File handling](https://github.com/csumsl/eec-493-f18/blob/master/README.md#file-handling) section for more information)
   
-  Q: Where is the download link to the program and do I need Java?
+  *Q: Where is the download link to the program and do I need Java?*
   
   A: Download link is [here](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar), click the "download" button right here ![Alt text](https://imgur.com/a/5axStc4). And yes, you do need Java to run this program. It will not run without Java.
   
-  Q: There are articles on the Web of Science .bib file that are from one of the three supported websites for author affiliations, why are they not population on the spreadsheet?
+  *Q: There are articles on the Web of Science .bib file that are from one of the three supported websites for author affiliations, why are they not population on the spreadsheet?*
   
   A: If there's an article on Web of Science that's hosted on asme, springer, or ieeexplore, it's best to export the .bib/.ris file from the article's webpage directly. Web of Science .bib files are not able to find affiliations unfortuately. To export .bib/.ris files from one of those three websites, see the [Other Recommendations](https://github.com/csumsl/eec-493-f18/blob/master/README.md#other-recommendations)) section.
