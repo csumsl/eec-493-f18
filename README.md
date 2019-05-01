@@ -103,3 +103,7 @@
   Q: Can the savedrecs.bib from Web of Science be renamed to something else?
   
   A: No, it has to stay named exactly like: savedrecs.bib (See [File handling](https://github.com/csumsl/eec-493-f18/blob/master/README.md#file-handling) section for more information)
+  
+  Q: Where is the download link to the program and do I need Java?
+  
+  A: Download link is [here](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar), click the "download" button right here ![Alt text](https://imgur.com/a/5axStc4). And yes, you do need Java to run this program. It will not run without Java.
