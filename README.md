@@ -17,7 +17,7 @@
 
 1. [Java](https://www.java.com/en/)
 2. Internet Connection
-    - Used to fetch affiliations if applicable
+    - Used to fetch affiliations (Supported websites: asme, springer, and ieeexplore)
     
 ## Retrieving citation file off of Web of Science:
 
@@ -107,3 +107,7 @@
   Q: Where is the download link to the program and do I need Java?
   
   A: Download link is [here](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar), click the "download" button right here ![Alt text](https://imgur.com/a/5axStc4). And yes, you do need Java to run this program. It will not run without Java.
+  
+  Q: There are articles on the Web of Science .bib file that are from one of the three supported websites for author affiliations, why are they not population on the spreadsheet?
+  
+  A: If there's an article on Web of Science that's hosted on asme, springer, or ieeexplore, it's best to export the .bib/.ris file from the article's webpage directly. Web of Science .bib files are not able to find affiliations unfortuately. To export .bib/.ris files from one of those three websites, see the [Other Recommendations](https://github.com/csumsl/eec-493-f18/blob/master/README.md#other-recommendations)) section.
