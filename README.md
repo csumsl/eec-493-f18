@@ -106,7 +106,11 @@
   
   *Q: Where is the download link to the program and do I need Java?*
   
-  A: Download link is [here](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar), click the "download" button right here ![Alt text](https://imgur.com/a/5axStc4). And yes, you do need Java to run this program. It will not run without Java.
+  A: Download link is [here](https://github.com/csumsl/eec-493-f18/blob/master/Metadata%20to%20Excel.jar), click the "download" button right here:
+  
+  ![Alt text](https://i.imgur.com/bj6wqZI.png)
+  
+  And yes, you do need Java to run this program. It will not run without Java.
   
   *Q: There are articles on the Web of Science .bib file that are from one of the three supported websites for author affiliations, why are they not population on the spreadsheet?*
   
